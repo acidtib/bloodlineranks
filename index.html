@@ -1,70 +1,118 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Bloodline Ranks - Coming Soon</title>
-
-    <!-- Cloudflare Web Analytics -->
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "102e48dad5984bdf83e872b22b845aeb"}'></script>
-    <!-- End Cloudflare Web Analytics -->
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+    <!-- tailwind css -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: '#bf9b30',
+                        parchment: '#d4c5a4',
+                    },
+                    backgroundImage: {
+                        'noise': "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")",
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-      body {
-        text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-        box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
-      }
+        @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=IM+Fell+English:ital@0;1&display=swap');
+        
+        .font-fell {
+            font-family: 'IM Fell English', serif;
+        }
+        
+        .font-fell-sc {
+            font-family: 'IM Fell English SC', serif;
+        }
 
-      .coming-soon {
-        background-color: rgba(0, 0, 0, 0.7);
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      }
+        .vintage-border {
+            border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='75' height='75' viewBox='0 0 75 75'%3E%3Cpath d='M2,2 L73,2 L73,73 L2,73 L2,2' style='fill:none;stroke:%23bf9b30;stroke-width:4' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 25;
+            border-width: 10px;
+            border-style: solid;
+        }
 
-      .discord-button {
-        background-color: #7289da;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 1.25rem;
-        text-decoration: none;
-      }
-      .discord-button:hover {
-        background-color: #5a6bcf;
-      }
-
-      .cover-container {
-        max-width: 42em;
-      }
+        .bg-texture {
+            background-color: #1a1a1a;
+            background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23262626' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+        }
     </style>
 
-  </head>
-  <body class="d-flex h-100 text-center text-bg-dark">
-    
-    <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
+    <title>Bloodline Ranks</title>
+</head>
+<body class="bg-texture text-parchment font-fell">
+    <!-- hero section -->
+    <section class="min-h-screen flex items-center justify-center text-center p-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-noise opacity-5 mix-blend-overlay"></div>
+        <div class="vintage-border bg-gray-900 bg-opacity-80 p-8 max-w-4xl mx-auto">
+            <h1 class="text-6xl font-fell-sc text-accent mb-6">Bloodline Ranks</h1>
+            <p class="text-xl italic mb-4">tools for survival and glory since 1896</p>
+            <div class="w-24 h-1 bg-accent mx-auto mb-4"></div>
+            <p class="text-lg">empowering hunters with precision tools and innovative resources</p>
+        </div>
+    </section>
 
-      <div class="coming-soon text-center p-3 py-5 mt-5">
-        <h1 class="mb-3">Bloodline Ranks</h1>
-        <p class="lead">Get ready for the ultimate Hunt: Showdown experience! We're currently offline, preparing for a massive update on August 15 that will bring new features and excitement to the game.</p>
-        <p>Join our Discord community to be the first to know when we launch! <br> Stay up-to-date on the latest news, behind-the-scenes insights, and more!</p>
-        <a href="https://discord.gg/f9pVUVuvwm" target="_blank" class="btn discord-button">Join Our Discord</a>
-      </div>
+    <!-- company story -->
+    <section class="py-16 relative">
+        <div class="absolute inset-0 bg-noise opacity-5 mix-blend-overlay"></div>
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-fell-sc text-accent mb-12 text-center">our legacy</h2>
+            <div class="vintage-border bg-gray-900 bg-opacity-80 p-8">
+                <p class="text-xl mb-6 italic">founded in 1896 during the height of the bayou's blood-soaked turmoil, bloodline ranks was born out of necessity.</p>
+                <p class="mb-6">our founders, <span class="text-accent font-fell-sc">acidtib</span> and <span class="text-accent font-fell-sc">tsauron</span>, were seasoned hunters turned craftsmen, who realized that many hunters fell not to monsters but to their own lack of preparation and tools.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-8 border border-accent/20 p-6">
+                    <div>
+                        <h3 class="text-lg font-fell-sc text-accent mb-3">acidtib</h3>
+                        <p class="italic">brought a craftsman's precision to the endeavor, creating tools grounded in meticulous engineering and field testing.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-fell-sc text-accent mb-3">tsauron</h3>
+                        <p class="italic">known for his strategic acumen and mastery of tactical resourcefulness, provided the innovative concepts and foresight needed to ensure hunters were always one step ahead of their prey.</p>
+                    </div>
+                </div>
+                <p>while others focus on brute force—arming hunters with firearms and explosives—bloodline ranks believes that survival lies in preparation, knowledge, and precision.</p>
+            </div>
+        </div>
+    </section>
 
-      <footer class="mt-auto text-white-50">
-        <p>With 
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hearts text-danger" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M4.931.481c1.627-1.671 5.692 1.254 0 5.015-5.692-3.76-1.626-6.686 0-5.015Zm6.84 1.794c1.084-1.114 3.795.836 0 3.343-3.795-2.507-1.084-4.457 0-3.343ZM7.84 7.642c2.71-2.786 9.486 2.09 0 8.358-9.487-6.268-2.71-11.144 0-8.358Z"></path>
-          </svg> from <a href="https://www.twitch.tv/acidtib" target="_blank" class="text-white">acidtib</a>
-        </p>
-      </footer>
-    </div>
+    <!-- tools showcase -->
+    <section class="py-16 relative">
+        <div class="absolute inset-0 bg-noise opacity-5 mix-blend-overlay"></div>
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-fell-sc text-accent mb-12 text-center">our tools</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- sensitivity calculator -->
+                <div class="lg:col-span-4">
+                    <div class="vintage-border bg-gray-900 bg-opacity-80 p-6 h-full transform transition-transform hover:-translate-y-2">
+                        <h3 class="text-xl font-fell-sc text-accent mb-4">hunt: showdown 1896 sensitivity calculator</h3>
+                        <p class="mb-6">revolutionizing the way hunters fight in the field with advanced mathematical models for precise aim calibration across all scopes and weapons.</p>
+                        <a href="https://huntsense.bloodlineranks.com/" target="_blank" class="inline-block px-6 py-2 border border-accent text-accent hover:bg-accent hover:text-gray-900 transition-colors font-fell-sc">learn more</a>
+                    </div>
+                </div>
+                <!-- placeholder for future tools -->
+                <div class="lg:col-span-8">
+                    <div class="vintage-border bg-gray-900 bg-opacity-80 p-6 h-full text-center">
+                        <div class="border border-accent/20 p-6">
+                            <h3 class="text-xl font-fell-sc text-accent mb-4">more tools coming soon</h3>
+                            <p class="italic">our craftsmen are hard at work developing new innovations to aid hunters in their pursuit of glory.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-  </body>
+    <!-- footer -->
+    <footer class="py-8 text-center text-accent/60">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="font-fell-sc">&copy; 1896-2024 bloodline ranks. all rights reserved.</p>
+        </div>
+    </footer>
+</body>
 </html>
