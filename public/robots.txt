@@ -1,0 +1,6 @@
+# allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# point to sitemap location
+Sitemap: https://bloodlineranks.com/sitemap.xml
