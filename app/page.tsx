@@ -14,11 +14,11 @@ export default function HomePage() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border bg-muted/50 px-4 py-2 text-sm backdrop-blur-sm">
               <Sparkles className="h-4 w-4 text-primary" />
-              <span className="text-muted-foreground">Precision tools for competitive hunters</span>
+              <span className="text-muted-foreground">Tools for Hunt: Showdown players & streamers</span>
             </div>
             <h1 className="mb-6 text-balance text-5xl font-bold tracking-tight md:text-7xl">Bloodline Ranks</h1>
             <p className="mb-8 text-pretty text-xl text-muted-foreground md:text-2xl">
-              Advanced hunting tools and analytics designed to elevate your performance and dominate the Bayou.
+              We make tools and community highlights for Hunt: Showdown. Get your aim right and help viewers find your stream.
             </p>
             <div className="invisible flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button size="lg" className="w-full sm:w-auto" asChild>
@@ -38,19 +38,17 @@ export default function HomePage() {
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight md:text-5xl">Our Mission</h2>
             <p className="text-pretty text-lg text-muted-foreground md:text-xl">
-              We build cutting edge tools that give hunters the competitive edge they need to succeed.
+              We make simple, useful stuff for Hunt players and creators. If it helps you win fights or get more eyes on your stream, we build it.
             </p>
           </div>
 
           <Card className="border-2">
             <CardContent className="p-8 md:p-12">
               <p className="mb-8 text-pretty text-lg leading-relaxed text-foreground">
-                Founded by passionate gamers and developers, Bloodline Ranks emerged from a simple belief: success in
-                the Bayou isn't just about reflexes, it's about precision, strategy, and having the right tools
-                at your disposal.
+                We started in the Hunt community and focus on things that help in matches and on stream. That means aim tuning that feels right in a fight, straightforward event tools, and setup that takes minutes.
               </p>
               <p className="text-pretty text-lg leading-relaxed text-foreground">
-                We combine coding, real world testing, and community feedback to create tools that make a difference in your hunts.
+                We test in real matches and build with creator feedback. If something’s clunky, we fix it or drop it. Tell us what you need, we’ll ship it, and we’ll help more viewers find you.
               </p>
             </CardContent>
           </Card>
@@ -61,7 +59,7 @@ export default function HomePage() {
       <section className="border-y bg-muted/30 py-20 md:py-28">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight md:text-5xl">Our Tools</h2>
-          <p className="text-pretty text-lg text-muted-foreground">Professional grade utilities for serious hunters.</p>
+          <p className="text-pretty text-lg text-muted-foreground">Handy tools for Hunt.</p>
         </div>
 
         <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
@@ -73,7 +71,7 @@ export default function HomePage() {
               </div>
               <h3 className="mb-3 text-2xl font-bold">Bloodline Ranks YouTube Channel</h3>
               <p className="mb-6 text-pretty leading-relaxed text-muted-foreground">
-                Get featured to drive more viewers to your Twitch. Clips, guides, and spotlights.
+                Weekly highlights, spotlights, and guides that help Hunt creators get discovered.
               </p>
               <Button className="w-full" asChild>
                 <Link href="https://www.youtube.com/@bloodlineranks" target="_blank">Visit Channel</Link>
@@ -89,7 +87,7 @@ export default function HomePage() {
               </div>
               <h3 className="mb-3 text-2xl font-bold">Hunt Community Event Tracker</h3>
               <p className="mb-6 text-pretty leading-relaxed text-muted-foreground">
-                Discord bots for Hunt: Showdown community events. Track stats and progress in real time.
+                Discord bots for Hunt community events. Track stats and progress in real time.
               </p>
               <Button className="w-full" asChild>
                 <Link href="https://huntcet.com/" target="_blank">Visit HuntCET</Link>
@@ -105,7 +103,7 @@ export default function HomePage() {
               </div>
               <h3 className="mb-3 text-2xl font-bold">Sensitivity Calculator</h3>
               <p className="mb-6 text-pretty leading-relaxed text-muted-foreground">
-                Achieve pixel perfect aim across all scopes and weapons with our sensitivity calibration tool.
+                Set your Hunt sensitivity across scopes and weapons, quick, accurate, done.
               </p>
               <Button className="w-full" asChild>
                 <Link href="https://huntsense.bloodlineranks.com/" target="_blank">Launch Calculator</Link>
@@ -136,9 +134,9 @@ export default function HomePage() {
       <section className="container mx-auto px-4 py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight md:text-5xl">Ready to Level Up?</h2>
+            <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight md:text-5xl">Join the Bloodline</h2>
             <p className="mb-8 text-pretty text-lg text-muted-foreground md:text-xl">
-              Join a community of hunters using Bloodline Ranks tools to improve their gameplay and viewership.
+              Hop in our Discord to talk Hunt, give feedback, and get featured.
             </p>
             <Button size="lg" asChild>
               <Link href="https://discord.gg/9KrBNvBH7a" target="_blank">Join the Discord Server</Link>

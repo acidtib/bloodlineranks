@@ -13,16 +13,16 @@ const _sourceSerif_4 = Source_Serif_4({ subsets: ['latin'], weight: ["200","300"
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NODE_ENV === 'production' ? 'https://bloodlineranks.com' : 'http://localhost:3000'),
-  title: "Bloodline Ranks: Instruments of Survival and Glory",
-  description: "Bloodline Ranks: Crafting precision tools for hunters since 1896. Empowering survival with mastery and innovation across the Bayou and Colorado's trials.",
-  keywords: "bloodline ranks, survival tools, hunting equipment, precision tools, bayou trials, hunter artisans, sensitivity calculator",
+  title: "Bloodline Ranks – Tools for Hunt: Showdown Players & Streamers",
+  description: "Tools for Hunt: Showdown players and streamers, sens calculator, event trackers, and weekly highlights that help viewers find your stream.",
+  keywords: "bloodline ranks, Hunt Showdown, tools, streamers, players, sensitivity calculator, community highlights, Twitch, YouTube, Hunt CET, event tracker",
   openGraph: {
     images: [
       {
         url: "/og-image-min.png",
         width: 1200,
         height: 630,
-        alt: "Bloodline Ranks: Instruments of Survival and Glory",
+        alt: "Bloodline Ranks – Tools for Hunt: Showdown Players & Streamers",
       },
     ],
   },
