@@ -16,16 +16,16 @@ export default function HomePage() {
               <Sparkles className="h-4 w-4 text-primary" />
               <span className="text-muted-foreground">Tools for Hunt: Showdown players & streamers</span>
             </div>
-            <h1 className="mb-6 text-balance text-5xl font-bold tracking-tight md:text-7xl">Bloodline Ranks</h1>
+            <h1 className="mb-6 mt-8 text-balance text-5xl font-bold tracking-tight md:text-7xl">Bloodline Ranks</h1>
             <p className="mb-8 text-pretty text-xl text-muted-foreground md:text-2xl">
               We make tools and community highlights for Hunt: Showdown. Get your aim right and help viewers find your stream.
             </p>
-            <div className="invisible flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button size="lg" className="w-full sm:w-auto" asChild>
-                <Link href="https://huntsense.bloodlineranks.com/">Try Sensitivity Calculator</Link>
+                <Link href="https://discord.gg/9KrBNvBH7a" target="_blank">Join the Discord</Link>
               </Button>
-              <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent">
-                Learn More
+              <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent" asChild>
+                <Link href="https://www.youtube.com/@bloodlineranks" target="_blank">Visit YouTube</Link>
               </Button>
             </div>
           </div>
