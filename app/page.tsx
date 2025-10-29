@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Calculator, Sparkles, TrendingUp } from "lucide-react"
+import { Calculator, Sparkles, TrendingUp, Globe } from "lucide-react"
 import { SiTwitch, SiYoutube } from "react-icons/si"
 import Link from "next/link"
 
@@ -142,6 +142,31 @@ export default function HomePage() {
               <Link href="https://discord.gg/9KrBNvBH7a" target="_blank">Join the Discord Server</Link>
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Community Websites Section */}
+      <section className="border-t bg-muted/20 py-20 md:py-28">
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight md:text-5xl">Community Websites</h2>
+          <p className="text-pretty text-lg text-muted-foreground">Sites we've built for creators in the Hunt community.</p>
+        </div>
+        <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
+          {/* Agent3540 Website */}
+          <Card className="group overflow-hidden border-2 transition-all hover:border-primary hover:shadow-xl">
+            <CardContent className="p-8">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20">
+                <Globe className="h-7 w-7 text-primary" />
+              </div>
+              <h3 className="mb-3 text-2xl font-bold">Agent3540</h3>
+              <p className="mb-6 text-pretty leading-relaxed text-muted-foreground">
+                Streamer website with schedule, highlights, and social integrations for The Agency.
+              </p>
+              <Button className="w-full" asChild>
+                <Link href="https://agent3540.com/" target="_blank">Visit Website</Link>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
