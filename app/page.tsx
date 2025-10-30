@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Calculator, Sparkles, TrendingUp, Globe } from "lucide-react"
 import { SiTwitch, SiYoutube } from "react-icons/si"
 import Link from "next/link"
+import { WebsiteImage } from "@/components/website-image"
 
 export default function HomePage() {
   return (
@@ -155,12 +156,21 @@ export default function HomePage() {
           {/* Agent3540 Website */}
           <Card className="group overflow-hidden border-2 transition-all hover:border-primary hover:shadow-xl">
             <CardContent className="p-8">
-              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20">
-                <Globe className="h-7 w-7 text-primary" />
+              <div className="mb-6 flex items-center gap-4">
+                <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20">
+                  <WebsiteImage
+                    src="https://agent3540.com/favicon.ico"
+                    alt="Agent3540"
+                    domain="agent3540.com"
+                  />
+                </div>
+                <div className="flex-1">
+                  <h3 className="mb-1 text-2xl font-bold">Agent3540</h3>
+                  <p className="text-sm text-muted-foreground">agent3540.com</p>
+                </div>
               </div>
-              <h3 className="mb-3 text-2xl font-bold">Agent3540</h3>
               <p className="mb-6 text-pretty leading-relaxed text-muted-foreground">
-                Streamer website with schedule, highlights, and social integrations for The Agency.
+                Custom hub for The Agency featuring live schedules, highlight reels, and social links all in one place.
               </p>
               <Button className="w-full" asChild>
                 <Link href="https://agent3540.com/" target="_blank">Visit Website</Link>
