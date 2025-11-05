@@ -15,11 +15,11 @@ export default function HomePage() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border bg-muted/50 px-4 py-2 text-sm backdrop-blur-sm">
               <Sparkles className="h-4 w-4 text-primary" />
-              <span className="text-muted-foreground">Tools for Hunt: Showdown players & streamers</span>
+              <span className="text-muted-foreground">Tools for Hunt players and creators</span>
             </div>
             <h1 className="mb-6 mt-8 text-balance text-5xl font-bold tracking-tight md:text-7xl">Bloodline Ranks</h1>
             <p className="mb-8 text-pretty text-xl text-muted-foreground md:text-2xl">
-              We make tools and community highlights for Hunt: Showdown. Get your aim right and help viewers find your stream.
+              Tools and resources for Hunt: Showdown players and content creators.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button size="lg" className="w-full sm:w-auto" asChild>
@@ -39,17 +39,16 @@ export default function HomePage() {
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight md:text-5xl">Our Mission</h2>
             <p className="text-pretty text-lg text-muted-foreground md:text-xl">
-              We make simple, useful stuff for Hunt players and creators. If it helps you win fights or get more eyes on your stream, we build it.
+              Building practical tools for Hunt players and creators.
             </p>
           </div>
-
           <Card className="border-2">
             <CardContent className="p-8 md:p-12">
               <p className="mb-8 text-pretty text-lg leading-relaxed text-foreground">
-                We started in the Hunt community and focus on things that help in matches and on stream. That means aim tuning that feels right in a fight, straightforward event tools, and setup that takes minutes.
+                For hunters, by hunters. We're part of the Hunt community, building tools that solve real problems: aim calculators that actually work, event tracking bots that just run, and setup guides that don't waste your time.
               </p>
               <p className="text-pretty text-lg leading-relaxed text-foreground">
-                We test in real matches and build with creator feedback. If something’s clunky, we fix it or drop it. Tell us what you need, we’ll ship it, and we’ll help more viewers find you.
+                Our tools are tested and proven by the community. If something doesn't work well, we improve it or remove it. We listen to what the community needs and build accordingly.
               </p>
             </CardContent>
           </Card>
@@ -60,9 +59,8 @@ export default function HomePage() {
       <section className="border-y bg-muted/30 py-20 md:py-28">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight md:text-5xl">Our Tools</h2>
-          <p className="text-pretty text-lg text-muted-foreground">Handy tools for Hunt.</p>
+          <p className="text-pretty text-lg text-muted-foreground">Resources to improve your gameplay and content reach.</p>
         </div>
-
         <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
           {/* Community YouTube Channel */}
           <Card className="group overflow-hidden border-2 transition-all hover:border-primary hover:shadow-xl">
@@ -72,14 +70,14 @@ export default function HomePage() {
               </div>
               <h3 className="mb-3 text-2xl font-bold">Bloodline Ranks YouTube Channel</h3>
               <p className="mb-6 text-pretty leading-relaxed text-muted-foreground">
-                Weekly highlights, spotlights, and guides that help Hunt creators get discovered.
+                Weekly highlights and creator spotlights from the Hunt community.
               </p>
               <Button className="w-full" asChild>
                 <Link href="https://www.youtube.com/@bloodlineranks" target="_blank">Visit Channel</Link>
               </Button>
             </CardContent>
           </Card>
-          
+
           {/* HuntCET */}
           <Card className="group overflow-hidden border-2 transition-all hover:border-primary hover:shadow-xl">
             <CardContent className="p-8">
@@ -88,7 +86,7 @@ export default function HomePage() {
               </div>
               <h3 className="mb-3 text-2xl font-bold">Hunt Community Event Tracker</h3>
               <p className="mb-6 text-pretty leading-relaxed text-muted-foreground">
-                Discord bots for Hunt community events. Track stats and progress in real time.
+                Discord bots for tracking hunt official community event stats, progress and live updates.
               </p>
               <Button className="w-full" asChild>
                 <Link href="https://huntcet.com/" target="_blank">Visit HuntCET</Link>
@@ -104,7 +102,7 @@ export default function HomePage() {
               </div>
               <h3 className="mb-3 text-2xl font-bold">Sensitivity Calculator</h3>
               <p className="mb-6 text-pretty leading-relaxed text-muted-foreground">
-                Set your Hunt sensitivity across scopes and weapons, quick, accurate, done.
+                Calculate and match sensitivities across different scopes and weapons.
               </p>
               <Button className="w-full" asChild>
                 <Link href="https://huntsense.bloodlineranks.com/" target="_blank">Launch Calculator</Link>
@@ -120,8 +118,7 @@ export default function HomePage() {
               </div>
               <h3 className="mb-3 text-2xl font-bold">More Tools Coming Soon</h3>
               <p className="mb-6 text-pretty leading-relaxed text-muted-foreground">
-                We're constantly developing new tools and features to help you level up your game. Stay tuned for
-                exciting updates and innovations.
+                Additional tools and features currently in development.
               </p>
               <Button variant="outline" className="w-full bg-transparent" disabled>
                 In Development
@@ -135,9 +132,9 @@ export default function HomePage() {
       <section className="container mx-auto px-4 py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight md:text-5xl">Join the Bloodline</h2>
+            <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight md:text-5xl">Join the Community</h2>
             <p className="mb-8 text-pretty text-lg text-muted-foreground md:text-xl">
-              Hop in our Discord to talk Hunt, give feedback, and get featured.
+              Connect with other Hunt players and creators, share feedback, and get updates on new tools.
             </p>
             <Button size="lg" asChild>
               <Link href="https://discord.gg/9KrBNvBH7a" target="_blank">Join the Discord Server</Link>
@@ -150,7 +147,7 @@ export default function HomePage() {
       <section className="border-t bg-muted/20 py-20 md:py-28">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight md:text-5xl">Community Websites</h2>
-          <p className="text-pretty text-lg text-muted-foreground">Sites we've built for creators in the Hunt community.</p>
+          <p className="text-pretty text-lg text-muted-foreground">Sites we've built for Hunt content creators.</p>
         </div>
         <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
           {/* Agent3540 Website */}
@@ -170,7 +167,7 @@ export default function HomePage() {
                 </div>
               </div>
               <p className="mb-6 text-pretty leading-relaxed text-muted-foreground">
-                Custom hub for The Agency featuring live schedules, highlight reels, and social links all in one place.
+                Custom website for The Agency with schedules, highlights, and social links.
               </p>
               <Button className="w-full" asChild>
                 <Link href="https://agent3540.com/" target="_blank">Visit Website</Link>
@@ -185,27 +182,27 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Bloodline Ranks.
+              © {new Date().getFullYear()} Bloodline Ranks
             </p>
             <div className="flex gap-6">
-            <Link
-              href="https://www.twitch.tv/acidtib"
-              target="_blank"
-              aria-label="Bloodline Ranks on Twitch"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <SiTwitch className="h-5 w-5" />
-              <span>Twitch</span>
-            </Link>
-            <Link
-              href="https://www.youtube.com/@bloodlineranks"
-              target="_blank"
-              aria-label="Bloodline Ranks on YouTube"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <SiYoutube className="h-5 w-5" />
-              <span>YouTube</span>
-            </Link>
+              <Link
+                href="https://www.twitch.tv/acidtib"
+                target="_blank"
+                aria-label="Bloodline Ranks on Twitch"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <SiTwitch className="h-5 w-5" />
+                <span>Twitch</span>
+              </Link>
+              <Link
+                href="https://www.youtube.com/@bloodlineranks"
+                target="_blank"
+                aria-label="Bloodline Ranks on YouTube"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <SiYoutube className="h-5 w-5" />
+                <span>YouTube</span>
+              </Link>
             </div>
           </div>
         </div>
