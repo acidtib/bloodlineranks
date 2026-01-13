@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Crosshair, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { SiDiscord, SiTwitch, SiYoutube } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,10 +30,7 @@ export interface NavbarProps {
 
 const defaultLinks: NavLink[] = [
   { href: "/", label: "Home" },
-  // Future pages can be added here:
-  // { href: "/tools", label: "Tools" },
-  // { href: "/community", label: "Community" },
-  // { href: "/about", label: "About" },
+  { href: "/hunt-sensitivity", label: "Sensitivity" },
 ];
 
 const socialLinks = [

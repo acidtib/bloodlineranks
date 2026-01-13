@@ -270,13 +270,7 @@ export default function HomePage() {
                 className="w-full border border-primary/30 bg-primary/10 font-display text-xs uppercase tracking-widest text-primary transition-all hover:bg-primary hover:text-primary-foreground"
                 asChild
               >
-                <Link
-                  href="https://huntsense.bloodlineranks.com/"
-                  target="_blank"
-                >
-                  Launch Calculator
-                  <ExternalLink className="ml-2 h-3 w-3" />
-                </Link>
+                <Link href="/hunt-sensitivity">Launch Calculator</Link>
               </Button>
             </article>
 
