@@ -17,9 +17,10 @@ import {
   calculate,
   DEFAULT_VALUES,
   SCOPE_METADATA,
-  type UserInput,
+  SCOPE_ORDER,
   type CalculatedSensitivities,
   type ScopeType,
+  type UserInput,
 } from "@/lib/sensitivity-calculator";
 
 function InputGroup({
@@ -137,16 +138,6 @@ export function SensitivityCalculator() {
 
   const hasChanges =
     JSON.stringify(userInput) !== JSON.stringify(DEFAULT_VALUES);
-
-  const scopeOrder: ScopeType[] = [
-    "standard",
-    "hipfire",
-    "ironsights",
-    "deadeye",
-    "marksman",
-    "sniper",
-    "aperture",
-  ];
 
   return (
     <div className="space-y-8">
@@ -384,7 +375,7 @@ export function SensitivityCalculator() {
 
             {results && (
               <div className="grid gap-3 sm:grid-cols-2">
-                {scopeOrder.map((scope) => (
+                {SCOPE_ORDER.map((scope) => (
                   <ResultCard
                     key={scope}
                     scopeType={scope}
@@ -420,7 +411,7 @@ export function SensitivityCalculator() {
             </ol>
 
             <ul className="mt-3 space-y-1 border-l-2 border-border pl-6 text-xs">
-              {scopeOrder.map((scope) => (
+              {SCOPE_ORDER.map((scope) => (
                 <li key={scope} className="text-muted-foreground">
                   <code className="font-mono text-parchment">
                     {SCOPE_METADATA[scope].configKey}

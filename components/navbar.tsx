@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Crosshair, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { SiDiscord, SiTwitch, SiYoutube } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import {

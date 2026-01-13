@@ -205,71 +205,41 @@ export function calculateSensitivities(
   const { monitor_distance_coefficient, standard_look_sensitivity } = userInput;
   const standardFov = fovs.standard_look.horizontal;
 
+  const fovMapping: Record<keyof typeof SENSITIVITY_FACTORS, number> = {
+    standard: standardFov,
+    hipfire: fovs.hipfire.horizontal,
+    ironsights: fovs.ironsights.horizontal,
+    deadeye: fovs.deadeye.horizontal,
+    marksman: fovs.marksman.horizontal,
+    sniper: fovs.sniper.horizontal,
+    aperture: fovs.aperture.horizontal,
+  };
+
+  function buildSensitivityValue(scope: keyof typeof SENSITIVITY_FACTORS): SensitivityValue {
+    const factor = SENSITIVITY_FACTORS[scope];
+    if (scope === "standard") {
+      return { factor, value: standard_look_sensitivity };
+    }
+    return {
+      factor,
+      value: calculateSensitivityValue(
+        factor,
+        fovMapping[scope],
+        standardFov,
+        monitor_distance_coefficient,
+        standard_look_sensitivity
+      ),
+    };
+  }
+
   return {
-    standard: {
-      factor: SENSITIVITY_FACTORS.standard,
-      value: standard_look_sensitivity,
-    },
-    hipfire: {
-      factor: SENSITIVITY_FACTORS.hipfire,
-      value: calculateSensitivityValue(
-        SENSITIVITY_FACTORS.hipfire,
-        fovs.hipfire.horizontal,
-        standardFov,
-        monitor_distance_coefficient,
-        standard_look_sensitivity
-      ),
-    },
-    ironsights: {
-      factor: SENSITIVITY_FACTORS.ironsights,
-      value: calculateSensitivityValue(
-        SENSITIVITY_FACTORS.ironsights,
-        fovs.ironsights.horizontal,
-        standardFov,
-        monitor_distance_coefficient,
-        standard_look_sensitivity
-      ),
-    },
-    deadeye: {
-      factor: SENSITIVITY_FACTORS.deadeye,
-      value: calculateSensitivityValue(
-        SENSITIVITY_FACTORS.deadeye,
-        fovs.deadeye.horizontal,
-        standardFov,
-        monitor_distance_coefficient,
-        standard_look_sensitivity
-      ),
-    },
-    marksman: {
-      factor: SENSITIVITY_FACTORS.marksman,
-      value: calculateSensitivityValue(
-        SENSITIVITY_FACTORS.marksman,
-        fovs.marksman.horizontal,
-        standardFov,
-        monitor_distance_coefficient,
-        standard_look_sensitivity
-      ),
-    },
-    sniper: {
-      factor: SENSITIVITY_FACTORS.sniper,
-      value: calculateSensitivityValue(
-        SENSITIVITY_FACTORS.sniper,
-        fovs.sniper.horizontal,
-        standardFov,
-        monitor_distance_coefficient,
-        standard_look_sensitivity
-      ),
-    },
-    aperture: {
-      factor: SENSITIVITY_FACTORS.aperture,
-      value: calculateSensitivityValue(
-        SENSITIVITY_FACTORS.aperture,
-        fovs.aperture.horizontal,
-        standardFov,
-        monitor_distance_coefficient,
-        standard_look_sensitivity
-      ),
-    },
+    standard: buildSensitivityValue("standard"),
+    hipfire: buildSensitivityValue("hipfire"),
+    ironsights: buildSensitivityValue("ironsights"),
+    deadeye: buildSensitivityValue("deadeye"),
+    marksman: buildSensitivityValue("marksman"),
+    sniper: buildSensitivityValue("sniper"),
+    aperture: buildSensitivityValue("aperture"),
   };
 }
 
@@ -312,3 +282,14 @@ export const SCOPE_METADATA = {
 } as const;
 
 export type ScopeType = keyof typeof SCOPE_METADATA;
+
+// Ordered list of scope types for consistent UI rendering
+export const SCOPE_ORDER: ScopeType[] = [
+  "standard",
+  "hipfire",
+  "ironsights",
+  "deadeye",
+  "marksman",
+  "sniper",
+  "aperture",
+];

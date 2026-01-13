@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Crosshair } from "lucide-react";
 import { SensitivityCalculator } from "@/components/sensitivity-calculator";
 
 export const metadata: Metadata = {
