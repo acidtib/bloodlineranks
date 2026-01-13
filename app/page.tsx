@@ -130,16 +130,14 @@ export default function HomePage() {
 
       {/* CTA Section */}
       <section className="container mx-auto px-4 py-20 md:py-28">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight md:text-5xl">Join the Community</h2>
-            <p className="mb-8 text-pretty text-lg text-muted-foreground md:text-xl">
-              Connect with other Hunt players and creators, share feedback, and get updates on new tools.
-            </p>
-            <Button size="lg" asChild>
-              <Link href="https://discord.gg/9KrBNvBH7a" target="_blank">Join the Discord Server</Link>
-            </Button>
-          </div>
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight md:text-5xl">Join the Community</h2>
+          <p className="mb-8 text-pretty text-lg text-muted-foreground md:text-xl">
+            Connect with other Hunt players and creators, share feedback, and get updates on new tools.
+          </p>
+          <Button size="lg" asChild>
+            <Link href="https://discord.gg/9KrBNvBH7a" target="_blank">Join the Discord Server</Link>
+          </Button>
         </div>
       </section>
 
@@ -158,7 +156,6 @@ export default function HomePage() {
                   <WebsiteImage
                     src="https://agent3540.com/favicon.ico"
                     alt="Agent3540"
-                    domain="agent3540.com"
                   />
                 </div>
                 <div className="flex-1">

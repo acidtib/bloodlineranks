@@ -7,10 +7,9 @@ import { Globe } from "lucide-react"
 interface WebsiteImageProps {
   src: string
   alt: string
-  domain: string
 }
 
-export function WebsiteImage({ src, alt, domain }: WebsiteImageProps) {
+export function WebsiteImage({ src, alt }: WebsiteImageProps) {
   const [imageError, setImageError] = useState(false)
 
   if (imageError) {
