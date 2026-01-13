@@ -30,10 +30,7 @@ export interface NavbarProps {
 
 const defaultLinks: NavLink[] = [
   { href: "/", label: "Home" },
-  // Future pages can be added here:
-  // { href: "/tools", label: "Tools" },
-  // { href: "/community", label: "Community" },
-  // { href: "/about", label: "About" },
+  { href: "/hunt-sensitivity", label: "Sensitivity" },
 ];
 
 const socialLinks = [
