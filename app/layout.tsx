@@ -4,12 +4,43 @@ import Script from 'next/script'
 
 import "./globals.css"
 
-import { Geist, Geist_Mono, Source_Serif_4 } from 'next/font/google'
+import localFont from 'next/font/local'
+import { JetBrains_Mono } from 'next/font/google'
 
-// Initialize fonts
-const _geist = Geist({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"] })
-const _geistMono = Geist_Mono({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"] })
-const _sourceSerif_4 = Source_Serif_4({ subsets: ['latin'], weight: ["200","300","400","500","600","700","800","900"] })
+// Hunt: Showdown display font - Unfair Style 2
+const unfairStyle = localFont({
+  src: './fonts/Unfair Style2Clean.ttf',
+  variable: '--font-unfair',
+  display: 'swap',
+})
+
+// Hunt: Showdown body font - GT Sectra Fine
+const gtSectraFine = localFont({
+  src: [
+    {
+      path: './fonts/GT-Sectra-Fine-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/GT-Sectra-Fine-Medium.ttf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: './fonts/GT-Sectra-Fine-Bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-sectra',
+  display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NODE_ENV === 'production' ? 'https://bloodlineranks.com' : 'http://localhost:3000'),
@@ -59,7 +90,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
       </head>
-      <body className={`font-sans antialiased`}>
+      <body className={`${unfairStyle.variable} ${gtSectraFine.variable} ${jetbrainsMono.variable} font-body antialiased`}>
         {children}
       </body>
     </html>
