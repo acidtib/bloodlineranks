@@ -4,21 +4,22 @@ import Script from 'next/script'
 
 import "./globals.css"
 
-import { Geist, Geist_Mono, Source_Serif_4 } from 'next/font/google'
+import { Cinzel, Crimson_Pro, JetBrains_Mono } from 'next/font/google'
 
-const geist = Geist({
+const cinzel = Cinzel({
   subsets: ['latin'],
-  variable: '--font-geist',
+  variable: '--font-cinzel',
+  weight: ['400', '500', '600', '700'],
 })
 
-const geistMono = Geist_Mono({
+const crimsonPro = Crimson_Pro({
   subsets: ['latin'],
-  variable: '--font-geist-mono',
+  variable: '--font-crimson',
 })
 
-const sourceSerif4 = Source_Serif_4({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  variable: '--font-source-serif-4',
+  variable: '--font-mono',
 })
 
 export const metadata: Metadata = {
@@ -69,7 +70,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
       </head>
-      <body className={`${geist.variable} ${geistMono.variable} ${sourceSerif4.variable} font-sans antialiased`}>
+      <body className={`${cinzel.variable} ${crimsonPro.variable} ${jetbrainsMono.variable} font-body antialiased`}>
         {children}
       </body>
     </html>
