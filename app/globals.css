@@ -60,8 +60,8 @@
 }
 
 @theme inline {
-  --font-display: 'Cinzel', serif;
-  --font-body: 'Crimson Pro', serif;
+  --font-display: var(--font-unfair), serif;
+  --font-body: var(--font-sectra), serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --color-background: var(--background);

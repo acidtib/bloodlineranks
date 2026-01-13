@@ -187,7 +187,7 @@ export default function HomePage() {
               Arsenal
             </h2>
             <p className="text-lg text-muted-foreground">
-              Resources built for the community.
+              Resources built for the community
             </p>
           </div>
 
@@ -341,7 +341,7 @@ export default function HomePage() {
               Community Builds
             </h2>
             <p className="text-lg text-muted-foreground">
-              Websites we've built for Hunt creators.
+              Websites we've built for Hunt creators
             </p>
           </div>
 

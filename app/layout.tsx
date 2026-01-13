@@ -4,17 +4,37 @@ import Script from 'next/script'
 
 import "./globals.css"
 
-import { Cinzel, Crimson_Pro, JetBrains_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
+import { JetBrains_Mono } from 'next/font/google'
 
-const cinzel = Cinzel({
-  subsets: ['latin'],
-  variable: '--font-cinzel',
-  weight: ['400', '500', '600', '700'],
+// Hunt: Showdown display font - Unfair Style 2
+const unfairStyle = localFont({
+  src: './fonts/Unfair Style2Clean.ttf',
+  variable: '--font-unfair',
+  display: 'swap',
 })
 
-const crimsonPro = Crimson_Pro({
-  subsets: ['latin'],
-  variable: '--font-crimson',
+// Hunt: Showdown body font - GT Sectra Fine
+const gtSectraFine = localFont({
+  src: [
+    {
+      path: './fonts/GT-Sectra-Fine-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/GT-Sectra-Fine-Medium.ttf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: './fonts/GT-Sectra-Fine-Bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-sectra',
+  display: 'swap',
 })
 
 const jetbrainsMono = JetBrains_Mono({
@@ -70,7 +90,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
       </head>
-      <body className={`${cinzel.variable} ${crimsonPro.variable} ${jetbrainsMono.variable} font-body antialiased`}>
+      <body className={`${unfairStyle.variable} ${gtSectraFine.variable} ${jetbrainsMono.variable} font-body antialiased`}>
         {children}
       </body>
     </html>
