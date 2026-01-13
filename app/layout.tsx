@@ -6,6 +6,7 @@ import "./globals.css"
 
 import localFont from 'next/font/local'
 import { JetBrains_Mono } from 'next/font/google'
+import { Navbar } from "@/components/navbar"
 
 // Hunt: Showdown display font - Unfair Style 2
 const unfairStyle = localFont({
@@ -91,6 +92,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${unfairStyle.variable} ${gtSectraFine.variable} ${jetbrainsMono.variable} font-body antialiased`}>
+        <Navbar />
         {children}
       </body>
     </html>
