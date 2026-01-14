@@ -2,28 +2,28 @@
 
 import * as React from "react";
 import {
-  Monitor,
-  Eye,
-  MousePointer2,
-  SlidersHorizontal,
-  Crosshair,
-  RotateCcw,
-  Copy,
-  Check,
-  Info,
-  Target,
-  Circle,
   Aperture,
+  Check,
+  Circle,
+  Copy,
+  Crosshair,
+  Eye,
   Focus,
+  Info,
+  Monitor,
+  MousePointer2,
+  RotateCcw,
   Scan,
+  SlidersHorizontal,
+  Target,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   calculate,
+  type CalculatedSensitivities,
   DEFAULT_VALUES,
   SCOPE_METADATA,
   SCOPE_ORDER,
-  type CalculatedSensitivities,
   type ScopeType,
   type UserInput,
 } from "@/lib/sensitivity-calculator";
@@ -58,16 +58,16 @@ function InputGroup({
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className="flex items-center gap-3">
-        <div className="flex h-8 w-8 items-center justify-center border border-accent/30 bg-accent/5">
+        <div className="flex h-9 w-9 items-center justify-center border border-accent/30 bg-accent/5">
           <Icon className="h-4 w-4 text-accent" />
         </div>
-        <h3 className="font-display text-sm uppercase tracking-widest text-parchment">
+        <h3 className="font-display text-sm uppercase tracking-wider text-parchment">
           {label}
         </h3>
       </div>
       {children}
       {hint && (
-        <p className="pl-0 sm:pl-11 text-xs leading-relaxed text-muted-foreground">
+        <p className="pl-0 sm:pl-12 text-[13px] leading-relaxed text-muted-foreground">
           {hint}
         </p>
       )}
@@ -121,40 +121,43 @@ function ResultCard({
       {/* Subtle scan line effect on hover */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-accent/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-      <div className="relative flex items-start justify-between gap-3 p-4">
-        <div className="flex items-start gap-3">
-          <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center border border-border/50 bg-muted/30 transition-colors duration-300 group-hover:border-accent/30 group-hover:bg-accent/10">
-            <Icon className="h-3.5 w-3.5 text-muted-foreground transition-colors duration-300 group-hover:text-accent" />
+      <div className="relative flex items-center justify-between gap-4 p-4 sm:p-5">
+        <div className="flex items-center gap-4">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-border/50 bg-muted/30 transition-colors duration-300 group-hover:border-accent/30 group-hover:bg-accent/10">
+            <Icon className="h-5 w-5 text-muted-foreground transition-colors duration-300 group-hover:text-accent" />
           </div>
-          <div className="space-y-1">
-            <h4 className="font-display text-[10px] uppercase tracking-widest text-muted-foreground">
+          <div className="space-y-0.5">
+            <h4 className="font-display text-xs uppercase tracking-wider text-parchment">
               {metadata.label}
             </h4>
-            <p
-              className={`font-mono text-xl tabular-nums text-parchment transition-all duration-300 ${
-                isAnimating ? "scale-105 text-accent" : ""
-              }`}
-            >
-              {formattedValue}
+            <p className="text-[13px] leading-snug text-muted-foreground">
+              {metadata.description}
             </p>
           </div>
         </div>
-        <button
-          onClick={handleCopy}
-          className="rounded p-2 text-muted-foreground transition-all duration-200 hover:bg-accent/10 hover:text-accent active:scale-95"
-          aria-label={`Copy ${metadata.label} value`}
-        >
-          {copied ? (
-            <Check className="h-4 w-4 text-green-500" />
-          ) : (
-            <Copy className="h-4 w-4" />
-          )}
-        </button>
+        <div className="flex items-center gap-3">
+          <p
+            className={`font-mono text-xl tabular-nums text-parchment transition-all duration-300 sm:text-2xl ${
+              isAnimating ? "scale-105 text-accent" : ""
+            }`}
+          >
+            {formattedValue}
+          </p>
+          <button
+            onClick={handleCopy}
+            className="rounded p-2 text-muted-foreground transition-all duration-200 hover:bg-accent/10 hover:text-accent active:scale-95"
+            aria-label={`Copy ${metadata.label} value`}
+          >
+            {copied
+              ? <Check className="h-5 w-5 text-green-500" />
+              : <Copy className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Config key reference */}
-      <div className="border-t border-border/30 bg-muted/20 px-4 py-2">
-        <code className="font-mono text-[10px] text-muted-foreground">
+      <div className="border-t border-border/30 bg-muted/20 px-4 py-2 sm:px-5">
+        <code className="font-mono text-xs text-muted-foreground">
           {metadata.configKey}
         </code>
       </div>
@@ -215,7 +218,7 @@ function CustomSlider({
 export function SensitivityCalculator() {
   const [userInput, setUserInput] = React.useState<UserInput>(DEFAULT_VALUES);
   const [results, setResults] = React.useState<CalculatedSensitivities | null>(
-    null
+    null,
   );
   const [toast, setToast] = React.useState<string | null>(null);
 
@@ -226,14 +229,14 @@ export function SensitivityCalculator() {
 
   const handleInputChange = <K extends keyof UserInput>(
     key: K,
-    value: UserInput[K]
+    value: UserInput[K],
   ) => {
     setUserInput((prev) => ({ ...prev, [key]: value }));
   };
 
   const handleResolutionChange = (
     dimension: "horizontal" | "vertical",
-    value: number
+    value: number,
   ) => {
     setUserInput((prev) => ({
       ...prev,
@@ -269,21 +272,21 @@ export function SensitivityCalculator() {
             : "pointer-events-none translate-y-4 opacity-0"
         }`}
       >
-        <div className="flex items-center gap-2 border border-accent/40 bg-card/95 px-5 py-2.5 shadow-[0_4px_20px_rgba(0,0,0,0.5),0_0_15px_rgba(204,107,26,0.2)] backdrop-blur-sm">
-          <Check className="h-4 w-4 text-accent" />
-          <span className="font-display text-sm uppercase tracking-widest text-parchment">
+        <div className="flex items-center gap-3 border border-accent/40 bg-card/95 px-5 py-3 shadow-[0_4px_20px_rgba(0,0,0,0.5),0_0_15px_rgba(204,107,26,0.2)] backdrop-blur-sm">
+          <Check className="h-5 w-5 text-accent" />
+          <span className="font-display text-sm uppercase tracking-wider text-parchment">
             {toast}
           </span>
         </div>
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-2">
+      <div className="grid items-start gap-8 lg:grid-cols-[2fr_3fr]">
         {/* Input Section */}
         <div className="reveal-up corner-ornament space-y-6 overflow-hidden border border-border/50 bg-gradient-to-br from-card/50 via-card/30 to-transparent p-4 backdrop-blur-sm sm:p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="h-6 w-1 bg-accent" />
-              <h2 className="font-display text-lg uppercase tracking-widest text-parchment">
+              <div className="h-7 w-1 bg-accent" />
+              <h2 className="font-display text-base uppercase tracking-wider text-parchment sm:text-lg">
                 Settings
               </h2>
             </div>
@@ -291,13 +294,11 @@ export function SensitivityCalculator() {
               variant="ghost"
               size="sm"
               onClick={handleReset}
-              className={`gap-2 font-display text-xs uppercase tracking-widest text-muted-foreground transition-all hover:text-accent ${
-                hasChanges
-                  ? "opacity-100"
-                  : "pointer-events-none opacity-0"
+              className={`gap-2 font-display text-xs uppercase tracking-wider text-muted-foreground transition-all hover:text-accent ${
+                hasChanges ? "opacity-100" : "pointer-events-none opacity-0"
               }`}
             >
-              <RotateCcw className="h-3 w-3" />
+              <RotateCcw className="h-3.5 w-3.5" />
               Reset
             </Button>
           </div>
@@ -307,23 +308,22 @@ export function SensitivityCalculator() {
             <InputGroup
               icon={Monitor}
               label="Game Resolution"
-              hint="Your in-game resolution"
+              hint="Your in game resolution"
               delay={100}
             >
-              <div className="flex items-center gap-3 pl-0 sm:pl-11">
+              <div className="flex items-center gap-3 pl-0 sm:pl-12">
                 <input
                   type="number"
                   value={userInput.resolution.horizontal}
                   onChange={(e) =>
                     handleResolutionChange(
                       "horizontal",
-                      parseInt(e.target.value) || 1920
-                    )
-                  }
-                  className="h-10 w-full border border-border bg-input/50 px-3 font-mono text-sm tabular-nums text-parchment transition-colors focus:border-accent focus:outline-none"
+                      parseInt(e.target.value) || 1920,
+                    )}
+                  className="h-11 w-full border border-border bg-input/50 px-3 font-mono text-base tabular-nums text-parchment transition-colors focus:border-accent focus:outline-none"
                   placeholder="1920"
                 />
-                <span className="font-display text-lg text-muted-foreground">
+                <span className="font-display text-xl text-muted-foreground">
                   ×
                 </span>
                 <input
@@ -332,10 +332,9 @@ export function SensitivityCalculator() {
                   onChange={(e) =>
                     handleResolutionChange(
                       "vertical",
-                      parseInt(e.target.value) || 1080
-                    )
-                  }
-                  className="h-10 w-full border border-border bg-input/50 px-3 font-mono text-sm tabular-nums text-parchment transition-colors focus:border-accent focus:outline-none"
+                      parseInt(e.target.value) || 1080,
+                    )}
+                  className="h-11 w-full border border-border bg-input/50 px-3 font-mono text-base tabular-nums text-parchment transition-colors focus:border-accent focus:outline-none"
                   placeholder="1080"
                 />
               </div>
@@ -345,10 +344,10 @@ export function SensitivityCalculator() {
             <InputGroup
               icon={Eye}
               label="Field of View"
-              hint="FOV range is limited between 85° and 110°"
+              hint="The configured FOV (85°-110°) is mapped internally to a vertical FOV at 16:9. Scopes use fixed FOV values regardless of this setting."
               delay={150}
             >
-              <div className="space-y-3 pl-0 sm:pl-11">
+              <div className="space-y-3 pl-0 sm:pl-12">
                 <div className="flex items-center gap-3">
                   <input
                     type="number"
@@ -360,13 +359,12 @@ export function SensitivityCalculator() {
                         "fov",
                         Math.min(
                           110,
-                          Math.max(85, parseInt(e.target.value) || 85)
-                        )
-                      )
-                    }
-                    className="h-10 w-24 border border-border bg-input/50 px-3 font-mono text-sm tabular-nums text-parchment transition-colors focus:border-accent focus:outline-none"
+                          Math.max(85, parseInt(e.target.value) || 85),
+                        ),
+                      )}
+                    className="h-11 w-28 border border-border bg-input/50 px-3 font-mono text-base tabular-nums text-parchment transition-colors focus:border-accent focus:outline-none"
                   />
-                  <span className="font-display text-sm text-muted-foreground">
+                  <span className="text-sm text-muted-foreground">
                     degrees
                   </span>
                 </div>
@@ -387,7 +385,7 @@ export function SensitivityCalculator() {
               hint="Your base sensitivity for looking around (Default Sensitivity in game settings)"
               delay={200}
             >
-              <div className="space-y-3 pl-0 sm:pl-11">
+              <div className="space-y-3 pl-0 sm:pl-12">
                 <input
                   type="number"
                   min={0.1}
@@ -399,20 +397,18 @@ export function SensitivityCalculator() {
                       "standard_look_sensitivity",
                       Math.min(
                         3,
-                        Math.max(0.1, parseFloat(e.target.value) || 1)
-                      )
-                    )
-                  }
-                  className="h-10 w-full border border-border bg-input/50 px-3 font-mono text-sm tabular-nums text-parchment transition-colors focus:border-accent focus:outline-none"
+                        Math.max(0.1, parseFloat(e.target.value) || 1),
+                      ),
+                    )}
+                  className="h-11 w-full border border-border bg-input/50 px-3 font-mono text-base tabular-nums text-parchment transition-colors focus:border-accent focus:outline-none"
                 />
                 <CustomSlider
                   value={userInput.standard_look_sensitivity}
                   onChange={(v) =>
                     handleInputChange(
                       "standard_look_sensitivity",
-                      Math.round(v * 100) / 100
-                    )
-                  }
+                      Math.round(v * 100) / 100,
+                    )}
                   min={0.1}
                   max={3}
                   step={0.01}
@@ -426,18 +422,19 @@ export function SensitivityCalculator() {
               label="Monitor Distance Coefficient"
               hint={
                 <span>
-                  Defines the reference point for sensitivity calculations:
+                  Choose where on screen mouse movement matches across FOVs.
+                  Useful for consistent flick shots.
                   <br />
-                  <strong className="text-parchment">0</strong> = Center of
-                  screen (recommended)
+                  <strong className="text-parchment">0%</strong>{" "}
+                  = Center of screen (recommended for tracking)
                   <br />
-                  <strong className="text-parchment">1</strong> = Edge of screen
-                  (faster scopes)
+                  <strong className="text-parchment">100%</strong>{" "}
+                  = Edge of screen (faster high zoom scopes)
                 </span>
               }
               delay={250}
             >
-              <div className="space-y-3 pl-0 sm:pl-11">
+              <div className="space-y-3 pl-0 sm:pl-12">
                 <input
                   type="number"
                   min={0}
@@ -447,19 +444,17 @@ export function SensitivityCalculator() {
                   onChange={(e) =>
                     handleInputChange(
                       "monitor_distance_coefficient",
-                      Math.min(1, Math.max(0, parseFloat(e.target.value) || 0))
-                    )
-                  }
-                  className="h-10 w-full border border-border bg-input/50 px-3 font-mono text-sm tabular-nums text-parchment transition-colors focus:border-accent focus:outline-none"
+                      Math.min(1, Math.max(0, parseFloat(e.target.value) || 0)),
+                    )}
+                  className="h-11 w-full border border-border bg-input/50 px-3 font-mono text-base tabular-nums text-parchment transition-colors focus:border-accent focus:outline-none"
                 />
                 <CustomSlider
                   value={userInput.monitor_distance_coefficient}
                   onChange={(v) =>
                     handleInputChange(
                       "monitor_distance_coefficient",
-                      Math.round(v * 10) / 10
-                    )
-                  }
+                      Math.round(v * 10) / 10,
+                    )}
                   min={0}
                   max={1}
                   step={0.1}
@@ -467,48 +462,111 @@ export function SensitivityCalculator() {
               </div>
             </InputGroup>
 
-            {/* Hipfire FOV */}
+            {/* Lowered State FOV */}
             <InputGroup
-              icon={Crosshair}
-              label="Hipfire FOV"
-              hint="Normal = standard hipfire FOV | Zoom = slight zoom when aiming (1.25×)"
+              icon={Eye}
+              label="Lowered State FOV"
+              hint="Affects FOV when weapon is lowered (sprinting, Hunter default). Zoom applies a 1.25x multiplier."
               delay={300}
             >
-              <div className="flex gap-4 pl-0 sm:pl-11">
+              <div className="flex gap-6 pl-0 sm:pl-12">
                 <label className="group flex cursor-pointer items-center gap-3">
                   <div
-                    className={`flex h-5 w-5 items-center justify-center border transition-all ${
-                      userInput.hipfire_fov === "normal"
+                    className={`flex h-6 w-6 items-center justify-center border transition-all ${
+                      userInput.lowered_state_fov === "default"
                         ? "border-accent bg-accent/20"
                         : "border-border bg-input/30 group-hover:border-accent/50"
                     }`}
                   >
-                    {userInput.hipfire_fov === "normal" && (
-                      <div className="h-2 w-2 bg-accent" />
+                    {userInput.lowered_state_fov === "default" && (
+                      <div className="h-2.5 w-2.5 bg-accent" />
+                    )}
+                  </div>
+                  <input
+                    type="radio"
+                    name="lowered_state_fov"
+                    value="default"
+                    checked={userInput.lowered_state_fov === "default"}
+                    onChange={() =>
+                      handleInputChange("lowered_state_fov", "default")
+                    }
+                    className="sr-only"
+                  />
+                  <span className="font-display text-sm uppercase tracking-wider text-parchment">
+                    Default
+                  </span>
+                </label>
+                <label className="group flex cursor-pointer items-center gap-3">
+                  <div
+                    className={`flex h-6 w-6 items-center justify-center border transition-all ${
+                      userInput.lowered_state_fov === "zoom"
+                        ? "border-accent bg-accent/20"
+                        : "border-border bg-input/30 group-hover:border-accent/50"
+                    }`}
+                  >
+                    {userInput.lowered_state_fov === "zoom" && (
+                      <div className="h-2.5 w-2.5 bg-accent" />
+                    )}
+                  </div>
+                  <input
+                    type="radio"
+                    name="lowered_state_fov"
+                    value="zoom"
+                    checked={userInput.lowered_state_fov === "zoom"}
+                    onChange={() =>
+                      handleInputChange("lowered_state_fov", "zoom")
+                    }
+                    className="sr-only"
+                  />
+                  <span className="font-display text-sm uppercase tracking-wider text-parchment">
+                    Zoom
+                  </span>
+                </label>
+              </div>
+            </InputGroup>
+
+            {/* Shoulder Aim FOV */}
+            <InputGroup
+              icon={Crosshair}
+              label="Shoulder Aim FOV"
+              hint="Affects FOV when weapon is raised (Gunslinger default / Hunter shoulder aim). Zoom applies a 1.25x multiplier."
+              delay={350}
+            >
+              <div className="flex gap-6 pl-0 sm:pl-12">
+                <label className="group flex cursor-pointer items-center gap-3">
+                  <div
+                    className={`flex h-6 w-6 items-center justify-center border transition-all ${
+                      userInput.hipfire_fov === "default"
+                        ? "border-accent bg-accent/20"
+                        : "border-border bg-input/30 group-hover:border-accent/50"
+                    }`}
+                  >
+                    {userInput.hipfire_fov === "default" && (
+                      <div className="h-2.5 w-2.5 bg-accent" />
                     )}
                   </div>
                   <input
                     type="radio"
                     name="hipfire_fov"
-                    value="normal"
-                    checked={userInput.hipfire_fov === "normal"}
-                    onChange={() => handleInputChange("hipfire_fov", "normal")}
+                    value="default"
+                    checked={userInput.hipfire_fov === "default"}
+                    onChange={() => handleInputChange("hipfire_fov", "default")}
                     className="sr-only"
                   />
-                  <span className="font-display text-xs uppercase tracking-widest text-parchment">
-                    Normal
+                  <span className="font-display text-sm uppercase tracking-wider text-parchment">
+                    Default
                   </span>
                 </label>
                 <label className="group flex cursor-pointer items-center gap-3">
                   <div
-                    className={`flex h-5 w-5 items-center justify-center border transition-all ${
+                    className={`flex h-6 w-6 items-center justify-center border transition-all ${
                       userInput.hipfire_fov === "zoom"
                         ? "border-accent bg-accent/20"
                         : "border-border bg-input/30 group-hover:border-accent/50"
                     }`}
                   >
                     {userInput.hipfire_fov === "zoom" && (
-                      <div className="h-2 w-2 bg-accent" />
+                      <div className="h-2.5 w-2.5 bg-accent" />
                     )}
                   </div>
                   <input
@@ -519,102 +577,83 @@ export function SensitivityCalculator() {
                     onChange={() => handleInputChange("hipfire_fov", "zoom")}
                     className="sr-only"
                   />
-                  <span className="font-display text-xs uppercase tracking-widest text-parchment">
+                  <span className="font-display text-sm uppercase tracking-wider text-parchment">
                     Zoom
                   </span>
                 </label>
               </div>
             </InputGroup>
           </div>
-        </div>
-
-        {/* Results Section */}
-        <div className="space-y-6">
-          <div className="reveal-up corner-ornament overflow-hidden border border-border/50 bg-gradient-to-br from-card/50 via-card/30 to-transparent p-4 backdrop-blur-sm sm:p-6">
-            <div className="mb-6 flex items-center gap-3">
-              <div className="h-6 w-1 bg-primary" />
-              <div>
-                <h2 className="font-display text-lg uppercase tracking-widest text-parchment">
-                  Calculated Sensitivities
-                </h2>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  Consistent sensitivity across all zoom levels
-                </p>
-              </div>
-            </div>
-
-            {results && (
-              <div className="grid gap-3 sm:grid-cols-2">
-                {SCOPE_ORDER.map((scope, index) => (
-                  <ResultCard
-                    key={scope}
-                    scopeType={scope}
-                    value={results[scope].value}
-                    onCopy={handleCopy}
-                    index={index}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
 
           {/* Instructions */}
           <div
-            className="reveal-up overflow-hidden border border-border/50 bg-gradient-to-br from-card/50 via-card/30 to-transparent p-4 backdrop-blur-sm sm:p-6"
+            className="reveal-up mt-8 border-t border-border/30 pt-6"
             style={{ animationDelay: "400ms" }}
           >
             <div className="mb-4 flex items-center gap-3">
-              <div className="flex h-8 w-8 items-center justify-center border border-accent/30 bg-accent/5">
-                <Info className="h-4 w-4 text-accent" />
-              </div>
-              <h2 className="font-display text-lg uppercase tracking-widest text-parchment">
+              <Info className="h-4 w-4 text-accent" />
+              <h3 className="font-display text-sm uppercase tracking-wider text-parchment">
                 How to Use
-              </h2>
+              </h3>
             </div>
 
-            <ol className="space-y-4 text-sm text-muted-foreground">
-              <li className="flex gap-4">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center border border-accent/30 font-display text-xs text-accent">
-                  1
-                </span>
-                <span className="pt-0.5">
-                  Navigate to:{" "}
-                  <code className="mt-1 block break-all border border-border/50 bg-muted/30 px-2 py-1 font-mono text-xs text-parchment">
-                    /Hunt Showdown 1896/USER/Profiles/default/attributes.xml
-                  </code>
-                </span>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center border border-accent/30 font-display text-xs text-accent">
-                  2
-                </span>
-                <span className="pt-0.5">
-                  Find and update the values shown in each result card
+            <ol className="space-y-3 text-sm text-muted-foreground">
+              <li className="flex gap-3">
+                <span className="font-display text-accent">1.</span>
+                <span>
+                  Open{" "}
+                  <code className="break-all border border-border/50 bg-muted/30 px-1.5 py-0.5 font-mono text-xs text-parchment">
+                    attributes.xml
+                  </code>{" "}
+                  in your Hunt profiles folder
                 </span>
               </li>
-              <li className="flex gap-4">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center border border-accent/30 font-display text-xs text-accent">
-                  3
-                </span>
-                <span className="pt-0.5">Save the file and restart the game</span>
+              <li className="flex gap-3">
+                <span className="font-display text-accent">2.</span>
+                <span>Copy and paste the calculated values</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="font-display text-accent">3.</span>
+                <span>Save and restart the game</span>
               </li>
             </ol>
+          </div>
+        </div>
 
-            <div className="mt-5 flex items-start gap-3 border border-accent/20 bg-accent/5 p-3">
-              <Copy className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-              <p className="text-xs text-muted-foreground">
-                <strong className="text-parchment">Tip:</strong> Click the copy
-                icon on each result card. The config key is shown at the bottom
-                of each card.
+        {/* Results Section */}
+        <div className="reveal-up corner-ornament overflow-hidden border border-border/50 bg-gradient-to-br from-card/50 via-card/30 to-transparent p-4 backdrop-blur-sm sm:p-6">
+          <div className="mb-6 flex items-center gap-3">
+            <div className="h-7 w-1 bg-primary" />
+            <div>
+              <h2 className="font-display text-base uppercase tracking-wider text-parchment sm:text-lg">
+                Calculated Sensitivities
+              </h2>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Values that counteract Hunt&apos;s hidden sensitivity factors
+                for consistent tracking
               </p>
             </div>
           </div>
+
+          {results && (
+            <div className="space-y-3">
+              {SCOPE_ORDER.map((scope, index) => (
+                <ResultCard
+                  key={scope}
+                  scopeType={scope}
+                  value={results[scope].value}
+                  onCopy={handleCopy}
+                  index={index}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
       {/* Attribution */}
       <p
-        className="reveal-up text-center text-xs text-muted-foreground"
+        className="reveal-up text-center text-sm text-muted-foreground"
         style={{ animationDelay: "500ms" }}
       >
         Thanks to{" "}
