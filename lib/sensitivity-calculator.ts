@@ -17,7 +17,8 @@ export interface UserInput {
   fov: number;
   standard_look_sensitivity: number;
   monitor_distance_coefficient: number;
-  hipfire_fov: "normal" | "zoom";
+  lowered_state_fov: "default" | "zoom";
+  hipfire_fov: "default" | "zoom";
 }
 
 export interface FovValue {
@@ -27,6 +28,7 @@ export interface FovValue {
 }
 
 export interface CalculatedFovs {
+  baseVfov: number;
   standard_look: FovValue;
   hipfire: FovValue;
   ironsights: FovValue;
@@ -65,8 +67,9 @@ const SENSITIVITY_FACTORS = {
 
 // VFOV multipliers for view modes that still scale with base FOV
 const VFOV_MULTIPLIERS = {
-  standard: 1.0,
-  hipfire_normal: 1.0,
+  lowered_default: 1.0,
+  lowered_zoom: 1.25,
+  hipfire_default: 1.0,
   hipfire_zoom: 1.25,
   ironsights: 1 / 0.48, // 2.083333...
 } as const;
@@ -104,7 +107,8 @@ export const DEFAULT_VALUES: UserInput = {
   fov: 85,
   standard_look_sensitivity: 1.0,
   monitor_distance_coefficient: 0,
-  hipfire_fov: "zoom", // default: Shoulder Aim FOV = "Zoom"
+  lowered_state_fov: "default", // Lowered State FOV = "Default"
+  hipfire_fov: "zoom", // Shoulder Aim FOV = "Zoom"
 };
 
 // Calculate horizontal FOV from vertical FOV and aspect ratio
@@ -128,22 +132,28 @@ export function calculateFovs(userInput: UserInput): CalculatedFovs {
 
   // Calculate base VFOV from user's HFOV setting
   const baseVfov = calculateBaseVfov(userInput.fov);
-  const baseHfov = calculateHorizontal(baseVfov, aspectRatio);
+
+  // Lowered state multiplier based on setting
+  const loweredMultiplier = userInput.lowered_state_fov === "zoom"
+    ? VFOV_MULTIPLIERS.lowered_zoom
+    : VFOV_MULTIPLIERS.lowered_default;
 
   // Hipfire multiplier based on setting
   const hipfireMultiplier = userInput.hipfire_fov === "zoom"
     ? VFOV_MULTIPLIERS.hipfire_zoom
-    : VFOV_MULTIPLIERS.hipfire_normal;
+    : VFOV_MULTIPLIERS.hipfire_default;
 
   // Calculate FOVs for modes that scale with base FOV
+  const loweredVfov = baseVfov / loweredMultiplier;
   const hipfireVfov = baseVfov / hipfireMultiplier;
   const ironsightsVfov = baseVfov / VFOV_MULTIPLIERS.ironsights;
 
   return {
+    baseVfov,
     standard_look: {
-      horizontal: baseHfov,
-      vertical: baseVfov,
-      zoomFactor: VFOV_MULTIPLIERS.standard,
+      horizontal: calculateHorizontal(loweredVfov, aspectRatio),
+      vertical: loweredVfov,
+      zoomFactor: loweredMultiplier,
     },
     hipfire: {
       horizontal: calculateHorizontal(hipfireVfov, aspectRatio),
@@ -217,11 +227,11 @@ export function calculateSensitivities(
   fovs: CalculatedFovs,
 ): CalculatedSensitivities {
   const { monitor_distance_coefficient, standard_look_sensitivity } = userInput;
-  // Use VERTICAL FOV for sensitivity calculations
-  const standardVfov = fovs.standard_look.vertical;
+  // Use BASE VFOV as reference for all sensitivity calculations
+  const baseVfov = fovs.baseVfov;
 
   const vfovMapping: Record<keyof typeof SENSITIVITY_FACTORS, number> = {
-    standard: standardVfov,
+    standard: fovs.standard_look.vertical,
     hipfire: fovs.hipfire.vertical,
     ironsights: fovs.ironsights.vertical,
     deadeye: fovs.deadeye.vertical,
@@ -242,7 +252,7 @@ export function calculateSensitivities(
       value: calculateSensitivityValue(
         factor,
         vfovMapping[scope],
-        standardVfov,
+        baseVfov, // Use base VFOV as reference, not lowered state VFOV
         monitor_distance_coefficient,
         standard_look_sensitivity,
       ),
@@ -276,7 +286,8 @@ export const SCOPE_METADATA = {
   hipfire: {
     label: "Shoulder Aim",
     configKey: "HipMouseSensitivity",
-    description: "Weapon raised / hipfire (Gunslinger default, Hunter shoulder aim)",
+    description:
+      "Weapon raised / hipfire (Gunslinger default, Hunter shoulder aim)",
   },
   ironsights: {
     label: "Iron Sights",
@@ -286,22 +297,22 @@ export const SCOPE_METADATA = {
   deadeye: {
     label: "Deadeye / Bullseye",
     configKey: "ShortScopeMouseSensitivity",
-    description: "Short-range scopes",
+    description: "Short range scopes",
   },
   marksman: {
     label: "Marksman / Pointman",
     configKey: "MediumScopeMouseSensitivity",
-    description: "Medium-range scopes",
+    description: "Medium range scopes",
   },
   sniper: {
     label: "Sniper",
     configKey: "LongScopeMouseSensitivity",
-    description: "Long-range scopes",
+    description: "Long range scopes",
   },
   aperture: {
     label: "Aperture",
     configKey: "PeepholeMouseSensitivity",
-    description: "Aperture sights (Nitro Express has different zoom)",
+    description: "Aperture sights ",
   },
 } as const;
 
