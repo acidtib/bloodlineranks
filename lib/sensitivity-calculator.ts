@@ -125,67 +125,68 @@ function calculateBaseVfov(hfov: number): number {
   );
 }
 
+// Helper to build FovValue from vertical FOV
+function buildFovValue(
+  vfov: number,
+  aspectRatio: number,
+  zoomFactor: number,
+): FovValue {
+  return {
+    horizontal: calculateHorizontal(vfov, aspectRatio),
+    vertical: vfov,
+    zoomFactor,
+  };
+}
+
+// Helper to build fixed scope FovValue
+function buildScopeFovValue(
+  scopeKey: keyof typeof FIXED_SCOPE_VFOV,
+  aspectRatio: number,
+  baseVfov: number,
+): FovValue {
+  const vfov = FIXED_SCOPE_VFOV[scopeKey];
+  return buildFovValue(vfov, aspectRatio, baseVfov / vfov);
+}
+
 // Calculate FOVs for all view modes
 export function calculateFovs(userInput: UserInput): CalculatedFovs {
-  const aspectRatio = userInput.resolution.horizontal /
-    userInput.resolution.vertical;
-
-  // Calculate base VFOV from user's HFOV setting
+  const aspectRatio =
+    userInput.resolution.horizontal / userInput.resolution.vertical;
   const baseVfov = calculateBaseVfov(userInput.fov);
 
-  // Lowered state multiplier based on setting
-  const loweredMultiplier = userInput.lowered_state_fov === "zoom"
-    ? VFOV_MULTIPLIERS.lowered_zoom
-    : VFOV_MULTIPLIERS.lowered_default;
-
-  // Hipfire multiplier based on setting
-  const hipfireMultiplier = userInput.hipfire_fov === "zoom"
-    ? VFOV_MULTIPLIERS.hipfire_zoom
-    : VFOV_MULTIPLIERS.hipfire_default;
-
-  // Calculate FOVs for modes that scale with base FOV
-  const loweredVfov = baseVfov / loweredMultiplier;
-  const hipfireVfov = baseVfov / hipfireMultiplier;
-  const ironsightsVfov = baseVfov / VFOV_MULTIPLIERS.ironsights;
+  // Multipliers based on user settings
+  const loweredMultiplier =
+    userInput.lowered_state_fov === "zoom"
+      ? VFOV_MULTIPLIERS.lowered_zoom
+      : VFOV_MULTIPLIERS.lowered_default;
+  const hipfireMultiplier =
+    userInput.hipfire_fov === "zoom"
+      ? VFOV_MULTIPLIERS.hipfire_zoom
+      : VFOV_MULTIPLIERS.hipfire_default;
 
   return {
     baseVfov,
-    standard_look: {
-      horizontal: calculateHorizontal(loweredVfov, aspectRatio),
-      vertical: loweredVfov,
-      zoomFactor: loweredMultiplier,
-    },
-    hipfire: {
-      horizontal: calculateHorizontal(hipfireVfov, aspectRatio),
-      vertical: hipfireVfov,
-      zoomFactor: hipfireMultiplier,
-    },
-    ironsights: {
-      horizontal: calculateHorizontal(ironsightsVfov, aspectRatio),
-      vertical: ironsightsVfov,
-      zoomFactor: VFOV_MULTIPLIERS.ironsights,
-    },
+    // View modes that scale with base FOV
+    standard_look: buildFovValue(
+      baseVfov / loweredMultiplier,
+      aspectRatio,
+      loweredMultiplier,
+    ),
+    hipfire: buildFovValue(
+      baseVfov / hipfireMultiplier,
+      aspectRatio,
+      hipfireMultiplier,
+    ),
+    ironsights: buildFovValue(
+      baseVfov / VFOV_MULTIPLIERS.ironsights,
+      aspectRatio,
+      VFOV_MULTIPLIERS.ironsights,
+    ),
     // Scopes use FIXED FOV values (new in 2.1)
-    deadeye: {
-      horizontal: calculateHorizontal(FIXED_SCOPE_VFOV.deadeye, aspectRatio),
-      vertical: FIXED_SCOPE_VFOV.deadeye,
-      zoomFactor: baseVfov / FIXED_SCOPE_VFOV.deadeye,
-    },
-    marksman: {
-      horizontal: calculateHorizontal(FIXED_SCOPE_VFOV.marksman, aspectRatio),
-      vertical: FIXED_SCOPE_VFOV.marksman,
-      zoomFactor: baseVfov / FIXED_SCOPE_VFOV.marksman,
-    },
-    sniper: {
-      horizontal: calculateHorizontal(FIXED_SCOPE_VFOV.sniper, aspectRatio),
-      vertical: FIXED_SCOPE_VFOV.sniper,
-      zoomFactor: baseVfov / FIXED_SCOPE_VFOV.sniper,
-    },
-    aperture: {
-      horizontal: calculateHorizontal(FIXED_SCOPE_VFOV.aperture, aspectRatio),
-      vertical: FIXED_SCOPE_VFOV.aperture,
-      zoomFactor: baseVfov / FIXED_SCOPE_VFOV.aperture,
-    },
+    deadeye: buildScopeFovValue("deadeye", aspectRatio, baseVfov),
+    marksman: buildScopeFovValue("marksman", aspectRatio, baseVfov),
+    sniper: buildScopeFovValue("sniper", aspectRatio, baseVfov),
+    aperture: buildScopeFovValue("aperture", aspectRatio, baseVfov),
   };
 }
 
@@ -227,7 +228,6 @@ export function calculateSensitivities(
   fovs: CalculatedFovs,
 ): CalculatedSensitivities {
   const { monitor_distance_coefficient, standard_look_sensitivity } = userInput;
-  // Use BASE VFOV as reference for all sensitivity calculations
   const baseVfov = fovs.baseVfov;
 
   const vfovMapping: Record<keyof typeof SENSITIVITY_FACTORS, number> = {
@@ -244,15 +244,18 @@ export function calculateSensitivities(
     scope: keyof typeof SENSITIVITY_FACTORS,
   ): SensitivityValue {
     const factor = SENSITIVITY_FACTORS[scope];
+
+    // Standard sensitivity is the user's base value
     if (scope === "standard") {
       return { factor, value: standard_look_sensitivity };
     }
+
     return {
       factor,
       value: calculateSensitivityValue(
         factor,
         vfovMapping[scope],
-        baseVfov, // Use base VFOV as reference, not lowered state VFOV
+        baseVfov,
         monitor_distance_coefficient,
         standard_look_sensitivity,
       ),

@@ -82,7 +82,7 @@ export function Navbar({ links = defaultLinks }: NavbarProps) {
                       target={link.external ? "_blank" : undefined}
                       rel={link.external ? "noopener noreferrer" : undefined}
                       className={cn(
-                        "group inline-flex h-9 items-center justify-center px-4 py-2 font-display text-sm uppercase tracking-widest text-muted-foreground transition-colors",
+                        "group inline-flex h-9 items-center justify-center px-4 py-2 font-display text-base uppercase tracking-widest text-muted-foreground transition-colors",
                         "hover:text-parchment focus:text-parchment focus:outline-none",
                       )}
                     >
@@ -144,7 +144,7 @@ export function Navbar({ links = defaultLinks }: NavbarProps) {
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noopener noreferrer" : undefined}
                     onClick={() => setIsOpen(false)}
-                    className="rounded-md px-3 py-2 font-display text-sm uppercase tracking-widest text-muted-foreground transition-colors hover:bg-accent/10 hover:text-parchment"
+                    className="rounded-md px-3 py-2 font-display text-base uppercase tracking-widest text-muted-foreground transition-colors hover:bg-accent/10 hover:text-parchment"
                   >
                     {link.label}
                   </Link>
