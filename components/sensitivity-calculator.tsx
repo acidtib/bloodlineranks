@@ -137,6 +137,9 @@ function ResultCard({
             >
               {formattedValue}
             </p>
+            <p className="text-[9px] leading-tight text-muted-foreground/70">
+              {metadata.description}
+            </p>
           </div>
         </div>
         <button
@@ -345,7 +348,7 @@ export function SensitivityCalculator() {
             <InputGroup
               icon={Eye}
               label="Field of View"
-              hint="FOV range is limited between 85° and 110°"
+              hint="The configured FOV (85°-110°) is mapped internally to a vertical FOV at 16:9. Scopes use fixed FOV values regardless of this setting."
               delay={150}
             >
               <div className="space-y-3 pl-0 sm:pl-11">
@@ -426,13 +429,14 @@ export function SensitivityCalculator() {
               label="Monitor Distance Coefficient"
               hint={
                 <span>
-                  Defines the reference point for sensitivity calculations:
+                  Choose where on screen mouse movement matches across FOVs.
+                  Useful for consistent flick shots.
                   <br />
-                  <strong className="text-parchment">0</strong> = Center of
-                  screen (recommended)
+                  <strong className="text-parchment">0%</strong> = Center of
+                  screen (recommended for tracking)
                   <br />
-                  <strong className="text-parchment">1</strong> = Edge of screen
-                  (faster scopes)
+                  <strong className="text-parchment">100%</strong> = Edge of
+                  screen (faster high-zoom scopes)
                 </span>
               }
               delay={250}
@@ -467,11 +471,11 @@ export function SensitivityCalculator() {
               </div>
             </InputGroup>
 
-            {/* Hipfire FOV */}
+            {/* Shoulder Aim FOV */}
             <InputGroup
               icon={Crosshair}
-              label="Hipfire FOV"
-              hint="Normal = standard hipfire FOV | Zoom = slight zoom when aiming (1.25×)"
+              label="Shoulder Aim FOV"
+              hint="Affects FOV when weapon is raised (Gunslinger default / Hunter shoulder aim). Zoom applies a 1.25x multiplier."
               delay={300}
             >
               <div className="flex gap-4 pl-0 sm:pl-11">
@@ -496,7 +500,7 @@ export function SensitivityCalculator() {
                     className="sr-only"
                   />
                   <span className="font-display text-xs uppercase tracking-widest text-parchment">
-                    Normal
+                    Default
                   </span>
                 </label>
                 <label className="group flex cursor-pointer items-center gap-3">
@@ -538,13 +542,14 @@ export function SensitivityCalculator() {
                   Calculated Sensitivities
                 </h2>
                 <p className="mt-1 text-xs text-muted-foreground">
-                  Consistent sensitivity across all zoom levels
+                  Values that counteract Hunt's hidden sensitivity factors for
+                  consistent tracking
                 </p>
               </div>
             </div>
 
             {results && (
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="space-y-3">
                 {SCOPE_ORDER.map((scope, index) => (
                   <ResultCard
                     key={scope}

@@ -271,30 +271,37 @@ export const SCOPE_METADATA = {
   standard: {
     label: "Default",
     configKey: "MouseSensitivity",
+    description: "Lowered state (weapon lowered, sprinting)",
   },
   hipfire: {
     label: "Shoulder Aim",
     configKey: "HipMouseSensitivity",
+    description: "Weapon raised / hipfire (Gunslinger default, Hunter shoulder aim)",
   },
   ironsights: {
-    label: "Aim Down Sights",
+    label: "Iron Sights",
     configKey: "IronSightsMouseSensitivity",
+    description: "Aiming down sights (ADS)",
   },
   deadeye: {
-    label: "Deadeye Scope",
+    label: "Deadeye / Bullseye",
     configKey: "ShortScopeMouseSensitivity",
+    description: "Short-range scopes",
   },
   marksman: {
-    label: "Marksman Scope",
+    label: "Marksman / Pointman",
     configKey: "MediumScopeMouseSensitivity",
+    description: "Medium-range scopes",
   },
   sniper: {
-    label: "Sniper Scope",
+    label: "Sniper",
     configKey: "LongScopeMouseSensitivity",
+    description: "Long-range scopes",
   },
   aperture: {
     label: "Aperture",
     configKey: "PeepholeMouseSensitivity",
+    description: "Aperture sights (Nitro Express has different zoom)",
   },
 } as const;
 
