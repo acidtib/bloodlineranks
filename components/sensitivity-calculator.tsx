@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
 import {
   Aperture,
   Check,
@@ -29,7 +29,7 @@ import {
 } from "@/lib/sensitivity-calculator";
 
 // Scope icons mapping for visual distinction
-const SCOPE_ICONS: Record<ScopeType, React.ElementType> = {
+const SCOPE_ICONS: Record<ScopeType, ElementType> = {
   standard: MousePointer2,
   hipfire: Crosshair,
   ironsights: Target,
@@ -39,19 +39,21 @@ const SCOPE_ICONS: Record<ScopeType, React.ElementType> = {
   aperture: Aperture,
 };
 
+interface InputGroupProps {
+  icon: ElementType;
+  label: string;
+  children: ReactNode;
+  hint?: ReactNode;
+  delay?: number;
+}
+
 function InputGroup({
   icon: Icon,
   label,
   children,
   hint,
   delay = 0,
-}: {
-  icon: React.ElementType;
-  label: string;
-  children: React.ReactNode;
-  hint?: React.ReactNode;
-  delay?: number;
-}) {
+}: InputGroupProps) {
   return (
     <div
       className="reveal-up space-y-3"
@@ -75,32 +77,34 @@ function InputGroup({
   );
 }
 
+interface ResultCardProps {
+  scopeType: ScopeType;
+  value: number;
+  onCopy: (value: string, label: string) => void;
+  index: number;
+}
+
 function ResultCard({
   scopeType,
   value,
   onCopy,
   index,
-}: {
-  scopeType: ScopeType;
-  value: number;
-  onCopy: (value: string, label: string) => void;
-  index: number;
-}) {
-  const [copied, setCopied] = React.useState(false);
-  const [isAnimating, setIsAnimating] = React.useState(false);
-  const prevValueRef = React.useRef(value);
+}: ResultCardProps) {
+  const [copied, setCopied] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const prevValueRef = useRef(value);
   const metadata = SCOPE_METADATA[scopeType];
   const formattedValue = value.toFixed(4);
   const Icon = SCOPE_ICONS[scopeType];
 
   // Animate on value change
-  React.useEffect(() => {
-    if (prevValueRef.current !== value) {
-      setIsAnimating(true);
-      const timer = setTimeout(() => setIsAnimating(false), 300);
-      prevValueRef.current = value;
-      return () => clearTimeout(timer);
-    }
+  useEffect(() => {
+    if (prevValueRef.current === value) return;
+
+    setIsAnimating(true);
+    prevValueRef.current = value;
+    const timer = setTimeout(() => setIsAnimating(false), 300);
+    return () => clearTimeout(timer);
   }, [value]);
 
   const handleCopy = () => {
@@ -165,19 +169,21 @@ function ResultCard({
   );
 }
 
+interface CustomSliderProps {
+  value: number;
+  onChange: (value: number) => void;
+  min: number;
+  max: number;
+  step: number;
+}
+
 function CustomSlider({
   value,
   onChange,
   min,
   max,
   step,
-}: {
-  value: number;
-  onChange: (value: number) => void;
-  min: number;
-  max: number;
-  step: number;
-}) {
+}: CustomSliderProps) {
   const percentage = ((value - min) / (max - min)) * 100;
 
   return (
@@ -215,15 +221,50 @@ function CustomSlider({
   );
 }
 
+interface RadioOptionProps {
+  name: string;
+  value: string;
+  checked: boolean;
+  onChange: () => void;
+  label: string;
+}
+
+function RadioOption({ name, value, checked, onChange, label }: RadioOptionProps) {
+  return (
+    <label className="group flex cursor-pointer items-center gap-3">
+      <div
+        className={`flex h-6 w-6 items-center justify-center border transition-all ${
+          checked
+            ? "border-accent bg-accent/20"
+            : "border-border bg-input/30 group-hover:border-accent/50"
+        }`}
+      >
+        {checked && <div className="h-2.5 w-2.5 bg-accent" />}
+      </div>
+      <input
+        type="radio"
+        name={name}
+        value={value}
+        checked={checked}
+        onChange={onChange}
+        className="sr-only"
+      />
+      <span className="font-display text-sm uppercase tracking-wider text-parchment">
+        {label}
+      </span>
+    </label>
+  );
+}
+
 export function SensitivityCalculator() {
-  const [userInput, setUserInput] = React.useState<UserInput>(DEFAULT_VALUES);
-  const [results, setResults] = React.useState<CalculatedSensitivities | null>(
+  const [userInput, setUserInput] = useState<UserInput>(DEFAULT_VALUES);
+  const [results, setResults] = useState<CalculatedSensitivities | null>(
     null,
   );
-  const [toast, setToast] = React.useState<string | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
 
   // Calculate on mount and when inputs change
-  React.useEffect(() => {
+  useEffect(() => {
     setResults(calculate(userInput));
   }, [userInput]);
 
@@ -470,58 +511,20 @@ export function SensitivityCalculator() {
               delay={300}
             >
               <div className="flex gap-6 pl-0 sm:pl-12">
-                <label className="group flex cursor-pointer items-center gap-3">
-                  <div
-                    className={`flex h-6 w-6 items-center justify-center border transition-all ${
-                      userInput.lowered_state_fov === "default"
-                        ? "border-accent bg-accent/20"
-                        : "border-border bg-input/30 group-hover:border-accent/50"
-                    }`}
-                  >
-                    {userInput.lowered_state_fov === "default" && (
-                      <div className="h-2.5 w-2.5 bg-accent" />
-                    )}
-                  </div>
-                  <input
-                    type="radio"
-                    name="lowered_state_fov"
-                    value="default"
-                    checked={userInput.lowered_state_fov === "default"}
-                    onChange={() =>
-                      handleInputChange("lowered_state_fov", "default")
-                    }
-                    className="sr-only"
-                  />
-                  <span className="font-display text-sm uppercase tracking-wider text-parchment">
-                    Default
-                  </span>
-                </label>
-                <label className="group flex cursor-pointer items-center gap-3">
-                  <div
-                    className={`flex h-6 w-6 items-center justify-center border transition-all ${
-                      userInput.lowered_state_fov === "zoom"
-                        ? "border-accent bg-accent/20"
-                        : "border-border bg-input/30 group-hover:border-accent/50"
-                    }`}
-                  >
-                    {userInput.lowered_state_fov === "zoom" && (
-                      <div className="h-2.5 w-2.5 bg-accent" />
-                    )}
-                  </div>
-                  <input
-                    type="radio"
-                    name="lowered_state_fov"
-                    value="zoom"
-                    checked={userInput.lowered_state_fov === "zoom"}
-                    onChange={() =>
-                      handleInputChange("lowered_state_fov", "zoom")
-                    }
-                    className="sr-only"
-                  />
-                  <span className="font-display text-sm uppercase tracking-wider text-parchment">
-                    Zoom
-                  </span>
-                </label>
+                <RadioOption
+                  name="lowered_state_fov"
+                  value="default"
+                  checked={userInput.lowered_state_fov === "default"}
+                  onChange={() => handleInputChange("lowered_state_fov", "default")}
+                  label="Default"
+                />
+                <RadioOption
+                  name="lowered_state_fov"
+                  value="zoom"
+                  checked={userInput.lowered_state_fov === "zoom"}
+                  onChange={() => handleInputChange("lowered_state_fov", "zoom")}
+                  label="Zoom"
+                />
               </div>
             </InputGroup>
 
@@ -533,54 +536,20 @@ export function SensitivityCalculator() {
               delay={350}
             >
               <div className="flex gap-6 pl-0 sm:pl-12">
-                <label className="group flex cursor-pointer items-center gap-3">
-                  <div
-                    className={`flex h-6 w-6 items-center justify-center border transition-all ${
-                      userInput.hipfire_fov === "default"
-                        ? "border-accent bg-accent/20"
-                        : "border-border bg-input/30 group-hover:border-accent/50"
-                    }`}
-                  >
-                    {userInput.hipfire_fov === "default" && (
-                      <div className="h-2.5 w-2.5 bg-accent" />
-                    )}
-                  </div>
-                  <input
-                    type="radio"
-                    name="hipfire_fov"
-                    value="default"
-                    checked={userInput.hipfire_fov === "default"}
-                    onChange={() => handleInputChange("hipfire_fov", "default")}
-                    className="sr-only"
-                  />
-                  <span className="font-display text-sm uppercase tracking-wider text-parchment">
-                    Default
-                  </span>
-                </label>
-                <label className="group flex cursor-pointer items-center gap-3">
-                  <div
-                    className={`flex h-6 w-6 items-center justify-center border transition-all ${
-                      userInput.hipfire_fov === "zoom"
-                        ? "border-accent bg-accent/20"
-                        : "border-border bg-input/30 group-hover:border-accent/50"
-                    }`}
-                  >
-                    {userInput.hipfire_fov === "zoom" && (
-                      <div className="h-2.5 w-2.5 bg-accent" />
-                    )}
-                  </div>
-                  <input
-                    type="radio"
-                    name="hipfire_fov"
-                    value="zoom"
-                    checked={userInput.hipfire_fov === "zoom"}
-                    onChange={() => handleInputChange("hipfire_fov", "zoom")}
-                    className="sr-only"
-                  />
-                  <span className="font-display text-sm uppercase tracking-wider text-parchment">
-                    Zoom
-                  </span>
-                </label>
+                <RadioOption
+                  name="hipfire_fov"
+                  value="default"
+                  checked={userInput.hipfire_fov === "default"}
+                  onChange={() => handleInputChange("hipfire_fov", "default")}
+                  label="Default"
+                />
+                <RadioOption
+                  name="hipfire_fov"
+                  value="zoom"
+                  checked={userInput.hipfire_fov === "zoom"}
+                  onChange={() => handleInputChange("hipfire_fov", "zoom")}
+                  label="Zoom"
+                />
               </div>
             </InputGroup>
           </div>
