@@ -772,7 +772,8 @@ export function SensitivityCalculator() {
           className="text-accent underline-offset-2 transition-colors hover:text-parchment hover:underline"
         >
           Skymirrh
-        </a>
+        </a>{" "}
+        for making this tool possible
       </p>
     </div>
   );
