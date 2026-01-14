@@ -150,19 +150,17 @@ function buildScopeFovValue(
 
 // Calculate FOVs for all view modes
 export function calculateFovs(userInput: UserInput): CalculatedFovs {
-  const aspectRatio =
-    userInput.resolution.horizontal / userInput.resolution.vertical;
+  const aspectRatio = userInput.resolution.horizontal /
+    userInput.resolution.vertical;
   const baseVfov = calculateBaseVfov(userInput.fov);
 
   // Multipliers based on user settings
-  const loweredMultiplier =
-    userInput.lowered_state_fov === "zoom"
-      ? VFOV_MULTIPLIERS.lowered_zoom
-      : VFOV_MULTIPLIERS.lowered_default;
-  const hipfireMultiplier =
-    userInput.hipfire_fov === "zoom"
-      ? VFOV_MULTIPLIERS.hipfire_zoom
-      : VFOV_MULTIPLIERS.hipfire_default;
+  const loweredMultiplier = userInput.lowered_state_fov === "zoom"
+    ? VFOV_MULTIPLIERS.lowered_zoom
+    : VFOV_MULTIPLIERS.lowered_default;
+  const hipfireMultiplier = userInput.hipfire_fov === "zoom"
+    ? VFOV_MULTIPLIERS.hipfire_zoom
+    : VFOV_MULTIPLIERS.hipfire_default;
 
   return {
     baseVfov,
@@ -298,12 +296,12 @@ export const SCOPE_METADATA = {
     description: "Aiming down sights (ADS)",
   },
   deadeye: {
-    label: "Deadeye / Bullseye",
+    label: "Deadeye",
     configKey: "ShortScopeMouseSensitivity",
     description: "Short range scopes",
   },
   marksman: {
-    label: "Marksman / Pointman",
+    label: "Marksman",
     configKey: "MediumScopeMouseSensitivity",
     description: "Medium range scopes",
   },
