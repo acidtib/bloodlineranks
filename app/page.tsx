@@ -109,7 +109,7 @@ export default function HomePage() {
             <div className="reveal-up delay-300 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button
                 size="lg"
-                className="group relative overflow-hidden border-2 border-primary bg-primary/90 font-display text-sm uppercase tracking-widest text-primary-foreground transition-all hover:bg-primary hover:shadow-[0_0_30px_rgba(196,30,30,0.3)]"
+                className="group relative overflow-hidden border-2 border-primary bg-primary/90 font-display text-base uppercase tracking-widest text-primary-foreground transition-all hover:bg-primary hover:shadow-[0_0_30px_rgba(196,30,30,0.3)]"
                 asChild
               >
                 <Link href="https://discord.gg/9KrBNvBH7a" target="_blank">
@@ -120,7 +120,7 @@ export default function HomePage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-accent/50 bg-transparent font-display text-sm uppercase tracking-widest text-accent transition-all hover:border-accent hover:bg-accent/10 hover:text-parchment"
+                className="border-2 border-accent/50 bg-transparent font-display text-base uppercase tracking-widest text-accent transition-all hover:border-accent hover:bg-accent/10 hover:text-parchment"
                 asChild
               >
                 <Link
@@ -210,7 +210,7 @@ export default function HomePage() {
               </p>
 
               <Button
-                className="w-full border border-primary/30 bg-primary/10 font-display text-xs uppercase tracking-widest text-primary transition-all hover:bg-primary hover:text-primary-foreground"
+                className="w-full border border-primary/30 bg-primary/10 font-display text-sm uppercase tracking-widest text-primary transition-all hover:bg-primary hover:text-primary-foreground"
                 asChild
               >
                 <Link
@@ -240,7 +240,7 @@ export default function HomePage() {
               </p>
 
               <Button
-                className="w-full border border-accent/30 bg-accent/10 font-display text-xs uppercase tracking-widest text-accent transition-all hover:bg-accent hover:text-accent-foreground"
+                className="w-full border border-accent/30 bg-accent/10 font-display text-sm uppercase tracking-widest text-accent transition-all hover:bg-accent hover:text-accent-foreground"
                 asChild
               >
                 <Link href="https://huntcet.com/" target="_blank">
@@ -267,7 +267,7 @@ export default function HomePage() {
               </p>
 
               <Button
-                className="w-full border border-primary/30 bg-primary/10 font-display text-xs uppercase tracking-widest text-primary transition-all hover:bg-primary hover:text-primary-foreground"
+                className="w-full border border-primary/30 bg-primary/10 font-display text-sm uppercase tracking-widest text-primary transition-all hover:bg-primary hover:text-primary-foreground"
                 asChild
               >
                 <Link href="/hunt-sensitivity">Launch Calculator</Link>
@@ -291,7 +291,7 @@ export default function HomePage() {
               <Button
                 variant="outline"
                 disabled
-                className="w-full cursor-not-allowed border border-border bg-transparent font-display text-xs uppercase tracking-widest text-muted-foreground"
+                className="w-full cursor-not-allowed border border-border bg-transparent font-display text-sm uppercase tracking-widest text-muted-foreground"
               >
                 In Development
               </Button>
@@ -315,7 +315,7 @@ export default function HomePage() {
 
             <Button
               size="lg"
-              className="group relative overflow-hidden border-2 border-primary bg-primary/90 font-display text-sm uppercase tracking-widest text-primary-foreground transition-all hover:bg-primary hover:shadow-[0_0_30px_rgba(196,30,30,0.3)]"
+              className="group relative overflow-hidden border-2 border-primary bg-primary/90 font-display text-base uppercase tracking-widest text-primary-foreground transition-all hover:bg-primary hover:shadow-[0_0_30px_rgba(196,30,30,0.3)]"
               asChild
             >
               <Link href="https://discord.gg/9KrBNvBH7a" target="_blank">
@@ -359,7 +359,7 @@ export default function HomePage() {
                     and social links.
                   </p>
                   <Button
-                    className="border border-primary/30 bg-primary/10 font-display text-xs uppercase tracking-widest text-primary transition-all hover:bg-primary hover:text-primary-foreground"
+                    className="border border-primary/30 bg-primary/10 font-display text-sm uppercase tracking-widest text-primary transition-all hover:bg-primary hover:text-primary-foreground"
                     asChild
                   >
                     <Link href="https://agent3540.com/" target="_blank">
