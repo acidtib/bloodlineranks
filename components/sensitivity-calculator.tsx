@@ -67,7 +67,7 @@ function InputGroup({
       </div>
       {children}
       {hint && (
-        <p className="pl-11 text-xs leading-relaxed text-muted-foreground">
+        <p className="pl-0 sm:pl-11 text-xs leading-relaxed text-muted-foreground">
           {hint}
         </p>
       )}
@@ -260,7 +260,7 @@ export function SensitivityCalculator() {
     JSON.stringify(userInput) !== JSON.stringify(DEFAULT_VALUES);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 overflow-hidden">
       {/* Toast notification */}
       <div
         className={`fixed bottom-6 left-1/2 z-50 -translate-x-1/2 transition-all duration-300 ${
@@ -279,7 +279,7 @@ export function SensitivityCalculator() {
 
       <div className="grid gap-8 lg:grid-cols-2">
         {/* Input Section */}
-        <div className="reveal-up corner-ornament space-y-6 border border-border/50 bg-gradient-to-br from-card/50 via-card/30 to-transparent p-6 backdrop-blur-sm">
+        <div className="reveal-up corner-ornament space-y-6 overflow-hidden border border-border/50 bg-gradient-to-br from-card/50 via-card/30 to-transparent p-4 backdrop-blur-sm sm:p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="h-6 w-1 bg-accent" />
@@ -310,7 +310,7 @@ export function SensitivityCalculator() {
               hint="Your in-game resolution"
               delay={100}
             >
-              <div className="flex items-center gap-3 pl-11">
+              <div className="flex items-center gap-3 pl-0 sm:pl-11">
                 <input
                   type="number"
                   value={userInput.resolution.horizontal}
@@ -348,7 +348,7 @@ export function SensitivityCalculator() {
               hint="FOV range is limited between 85° and 110°"
               delay={150}
             >
-              <div className="space-y-3 pl-11">
+              <div className="space-y-3 pl-0 sm:pl-11">
                 <div className="flex items-center gap-3">
                   <input
                     type="number"
@@ -387,7 +387,7 @@ export function SensitivityCalculator() {
               hint="Your base sensitivity for looking around (Default Sensitivity in game settings)"
               delay={200}
             >
-              <div className="space-y-3 pl-11">
+              <div className="space-y-3 pl-0 sm:pl-11">
                 <input
                   type="number"
                   min={0.1}
@@ -437,7 +437,7 @@ export function SensitivityCalculator() {
               }
               delay={250}
             >
-              <div className="space-y-3 pl-11">
+              <div className="space-y-3 pl-0 sm:pl-11">
                 <input
                   type="number"
                   min={0}
@@ -474,7 +474,7 @@ export function SensitivityCalculator() {
               hint="Normal = standard hipfire FOV | Zoom = slight zoom when aiming (1.25×)"
               delay={300}
             >
-              <div className="flex gap-4 pl-11">
+              <div className="flex gap-4 pl-0 sm:pl-11">
                 <label className="group flex cursor-pointer items-center gap-3">
                   <div
                     className={`flex h-5 w-5 items-center justify-center border transition-all ${
@@ -530,7 +530,7 @@ export function SensitivityCalculator() {
 
         {/* Results Section */}
         <div className="space-y-6">
-          <div className="reveal-up corner-ornament border border-border/50 bg-gradient-to-br from-card/50 via-card/30 to-transparent p-6 backdrop-blur-sm">
+          <div className="reveal-up corner-ornament overflow-hidden border border-border/50 bg-gradient-to-br from-card/50 via-card/30 to-transparent p-4 backdrop-blur-sm sm:p-6">
             <div className="mb-6 flex items-center gap-3">
               <div className="h-6 w-1 bg-primary" />
               <div>
@@ -560,7 +560,7 @@ export function SensitivityCalculator() {
 
           {/* Instructions */}
           <div
-            className="reveal-up border border-border/50 bg-gradient-to-br from-card/50 via-card/30 to-transparent p-6 backdrop-blur-sm"
+            className="reveal-up overflow-hidden border border-border/50 bg-gradient-to-br from-card/50 via-card/30 to-transparent p-4 backdrop-blur-sm sm:p-6"
             style={{ animationDelay: "400ms" }}
           >
             <div className="mb-4 flex items-center gap-3">
@@ -579,7 +579,7 @@ export function SensitivityCalculator() {
                 </span>
                 <span className="pt-0.5">
                   Navigate to:{" "}
-                  <code className="mt-1 block border border-border/50 bg-muted/30 px-2 py-1 font-mono text-xs text-parchment">
+                  <code className="mt-1 block break-all border border-border/50 bg-muted/30 px-2 py-1 font-mono text-xs text-parchment">
                     /Hunt Showdown 1896/USER/Profiles/default/attributes.xml
                   </code>
                 </span>
