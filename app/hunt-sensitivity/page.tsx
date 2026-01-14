@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 export default function HuntSensitivityPage() {
   return (
-    <div className="relative min-h-screen bg-background grain">
+    <div className="relative min-h-screen overflow-x-hidden bg-background grain">
       {/* Atmospheric fog layers */}
       <div className="pointer-events-none fixed inset-0 z-0">
         <div
