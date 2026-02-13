@@ -47,10 +47,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NODE_ENV === 'production' ? 'https://bloodlineranks.com' : 'http://localhost:3000'),
   title: "Bloodline Ranks - Tools for Hunt: Showdown Players & Creators",
   description: "Bloodline Ranks builds practical tools for Hunt: Showdown players and content creators, including the Hunt Community Event Tracker, sensitivity calculator, and custom community websites.",
-  keywords: "bloodline ranks, Hunt Showdown, tools, content creators, players, sensitivity calculator, hunt community event tracker, huntcet, community websites, twitch, youtube",
+  keywords: "bloodline ranks, Hunt Showdown, tools, content creators, players, sensitivity calculator, hunt community event tracker, community websites, twitch, youtube",
   openGraph: {
     title: "Bloodline Ranks - Tools for Hunt: Showdown Players & Creators",
-    description: "Tools and resources for Hunt: Showdown players and creators: HuntCET, sensitivity calculators, and community website projects.",
+    description: "Tools and resources for Hunt: Showdown players and creators: sensitivity calculators, and community website projects.",
     images: [
       {
         url: "/og-image-min.png",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Bloodline Ranks - Tools for Hunt: Showdown Players & Creators",
-    description: "Discover community-built Hunt: Showdown tools like HuntCET, the sensitivity calculator, and custom creator websites.",
+    description: "Discover community-built Hunt: Showdown tools like the sensitivity calculator, and custom creator websites.",
     images: ["/og-image-min.png"],
   },
 }
