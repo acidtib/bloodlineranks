@@ -224,7 +224,7 @@ export default function HomePage() {
             </article>
 
             {/* HuntCET */}
-            <article className="reveal-up delay-200 group relative border-2 border-border bg-card/80 p-8 backdrop-blur-sm transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(196,30,30,0.15)]">
+            {/* <article className="reveal-up delay-200 group relative border-2 border-border bg-card/80 p-8 backdrop-blur-sm transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(196,30,30,0.15)]">
               <div className="absolute right-4 top-4 h-2 w-2 rounded-full bg-accent/60 group-hover:animate-pulse" />
 
               <OrnateIcon>
@@ -248,7 +248,7 @@ export default function HomePage() {
                   <ExternalLink className="ml-2 h-3 w-3" />
                 </Link>
               </Button>
-            </article>
+            </article> */}
 
             {/* Sensitivity Calculator */}
             <article className="reveal-up delay-300 group relative border-2 border-border bg-card/80 p-8 backdrop-blur-sm transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(196,30,30,0.15)]">
